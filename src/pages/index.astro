@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const sections = (await getCollection('sections')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+// Render every section's Markdown up front; the page is fully static.
+const rendered = await Promise.all(
+  sections.map(async (entry) => ({ entry, ...(await render(entry)) }))
+);
+
+const hoods = (await getCollection('neighborhoods')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+
+<Base
+  title="Seattle, explained — seattlerec.com"
+  description="An intro to Seattle as a city: how to orient yourself, how to get around, the Freeze, the rain myth, and the quirks nobody tells a first-time visitor."
+>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">An intro to the city</p>
+      <h1>Seattle, <em>explained</em></h1>
+      <p class="lede">
+        Everything a first-time visitor needs before the rest of it makes sense —
+        how the place is shaped, how to move through it, what closes early, and
+        which of the things you have heard are actually true.
+      </p>
+    </div>
+  </header>
+
+  <nav class="contents">
+    <div class="wrap">
+      <h2>Contents</h2>
+      <ol class="toc">
+        {sections.map((s) => (
+          <li>
+            <a href={`#${slug(s.data.title)}`}>
+              <span class="n">{pad(s.data.order)}</span>
+              <span class="t">
+                {s.data.title}
+                <span class="s">{s.data.summary}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+
+  <main>
+    {rendered.map(({ entry, Content }) => (
+      <section class="section" id={slug(entry.data.title)}>
+        <div class="wrap">
+          <div class="section-head">
+            <span class="num">{pad(entry.data.order)}</span>
+            <p class="kicker">{entry.data.kicker}</p>
+            <h2>{entry.data.title}</h2>
+          </div>
+          <div class="prose">
+            <Content />
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="hoods" id="neighborhoods">
+      <div class="wrap-wide">
+        <div class="section-head">
+          <p class="kicker">Where to point yourself</p>
+          <h2>The neighborhoods</h2>
+        </div>
+        <div class="hood-grid">
+          {hoods.map((h) => (
+            <article class="hood">
+              <h3>{h.data.name}</h3>
+              <ul class="tags">
+                {h.data.vibe.map((v) => <li>{v}</li>)}
+              </ul>
+              <p class="one">{h.data.oneLine}</p>
+              <p class="transit">{h.data.transit}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="big">Next: the actual recommendations.</p>
+      <p>
+        Curated cafes, restaurants, third places, hikes and water spots — pick
+        what you are into and swipe through a deck built for you.
+      </p>
+    </div>
+  </footer>
+</Base>
