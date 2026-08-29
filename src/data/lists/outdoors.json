@@ -1,0 +1,65 @@
+{
+  "name": "Outdoors",
+  "slug": "outdoors",
+  "emoji": "🌲",
+  "order": 3,
+  "blurb": "Beaches, gardens and old industrial land the city let the trees take back.",
+  "sample": true,
+  "updated": "2026-08-29",
+  "places": [
+    {
+      "name": "Discovery Park",
+      "note": "534 acres and a lighthouse. The loop trail is the default walk.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Discovery+Park+Seattle",
+      "lat": 47.6618111,
+      "lng": -122.4219145,
+      "address": "Discovery Park, 3801, Magnolia, Seattle, King County, Washington, 98199, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Kubota Garden",
+      "note": "Free, in South Seattle, and almost nobody who lives here has been.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Kubota+Garden+Seattle",
+      "lat": 47.5128166,
+      "lng": -122.266071,
+      "address": "Kubota Garden, 9817, Rainier Beach, Seattle, King County, Washington, 98118, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Washington Park Arboretum",
+      "note": "Go in April for the azaleas, October for everything else.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Washington+Park+Arboretum+Seattle",
+      "lat": 47.6351836,
+      "lng": -122.2964673,
+      "address": "Washington Park Arboretum, 2300, Madison Park, Seattle, King County, Washington, 98112, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Golden Gardens Park",
+      "note": "Beach fires, Olympics across the water, sunset in summer.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Golden+Gardens+Park+Seattle",
+      "lat": 47.6921997,
+      "lng": -122.4029796,
+      "address": "Golden Gardens Park, 8498, Ballard, Seattle, King County, Washington, 98117, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Alki Beach",
+      "note": "West Seattle. The skyline view everyone thinks is from downtown.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Alki+Beach+Seattle",
+      "lat": 47.5816765,
+      "lng": -122.4052299,
+      "address": "Alki Beach, West Seattle, Seattle, King County, Washington, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Gas Works Park",
+      "note": "A decommissioned gasification plant you are allowed to climb on.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Gas+Works+Park+Seattle",
+      "lat": 47.6455976,
+      "lng": -122.3349284,
+      "address": "Gas Works Park, 2101, Fremont, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim"
+    }
+  ]
+}

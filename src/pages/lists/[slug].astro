@@ -1,0 +1,197 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const lists = await getCollection('lists');
+  return lists
+    .filter((l) => !l.data.hidden)
+    .map((l) => ({ params: { slug: l.data.slug }, props: { list: l.data } }));
+}
+
+const { list } = Astro.props;
+const places = list.places;
+
+// The map needs coordinates and nothing else. Everything else on this page is
+// server-rendered, so the list still reads fine if the script never arrives.
+const pins = places.map((p, i) => ({
+  n: i + 1,
+  name: p.name,
+  note: p.note ?? p.blurb ?? '',
+  lat: p.lat,
+  lng: p.lng,
+}));
+
+// Google's universal maps link: works on the web and hands off to the native
+// app on a phone, without needing an API key or a place ID.
+const mapsLink = (p: { name: string; url?: string; lat: number; lng: number }) =>
+  p.url ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}`;
+
+const directionsLink = (p: { lat: number; lng: number }) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
+
+const shortAddress = (a?: string) =>
+  a ? a.split(',').slice(0, 3).join(',').replace(/^[^,]+,\s*/, '') : '';
+---
+
+<Base
+  title={`${list.name} — seattlerec.com`}
+  description={list.blurb ?? `${places.length} saved Seattle places in the ${list.name} list, on a map.`}
+>
+  <div class="list-page">
+    <header class="list-head">
+      <div class="wrap-wide">
+        <p class="eyebrow"><a href="/lists/">← All lists</a></p>
+        <h1>
+          {list.emoji && <span class="head-emoji" aria-hidden="true">{list.emoji}</span>}
+          {list.name}
+        </h1>
+        {list.blurb && <p class="lede">{list.blurb}</p>}
+        <p class="meta">
+          {places.length} places
+          {list.updated && <> · saved list, last imported {list.updated}</>}
+          {list.sample && <> · <span class="badge">sample data</span></>}
+        </p>
+      </div>
+    </header>
+
+    <div class="wrap-wide">
+      <div class="list-layout">
+        <ol class="places" id="places">
+          {places.map((p, i) => (
+            <li class="place" id={`place-${i}`} data-idx={i}>
+              <button class="place-hit" type="button" data-idx={i}>
+                <span class="place-n" aria-hidden="true">{i + 1}</span>
+                <span class="place-main">
+                  <span class="place-name">{p.name}</span>
+                  {(p.note || p.blurb) && <span class="place-note">{p.blurb ?? p.note}</span>}
+                  {shortAddress(p.address) && (
+                    <span class="place-addr">{shortAddress(p.address)}</span>
+                  )}
+                </span>
+                <span class="sr-only">Show on map</span>
+              </button>
+              <p class="place-links">
+                <a href={mapsLink(p)} target="_blank" rel="noopener">Google Maps</a>
+                <a href={directionsLink(p)} target="_blank" rel="noopener">Directions</a>
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <div class="map-panel">
+          <div id="map" class="map" role="application" aria-label={`Map of ${list.name}`}></div>
+          <noscript>
+            <p class="map-fallback">
+              The map needs JavaScript. Every place above links straight out to
+              Google Maps in the meantime.
+            </p>
+          </noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="pins" set:html={JSON.stringify(pins)}></script>
+
+  <script>
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
+
+    const el = document.getElementById('map');
+    const raw = document.getElementById('pins')?.textContent;
+    if (el && raw) {
+      const pins = JSON.parse(raw);
+
+      const map = L.map(el, { scrollWheelZoom: false, zoomControl: true });
+
+      // CARTO ship a light and a dark basemap on the same tile scheme, so the
+      // map can follow the page theme instead of glowing white in dark mode.
+      const scheme = (dark) =>
+        `https://{s}.basemaps.cartocdn.com/${dark ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`;
+      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      let tiles = L.tileLayer(scheme(darkQuery.matches), {
+        subdomains: 'abcd',
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      }).addTo(map);
+
+      darkQuery.addEventListener('change', (e) => {
+        map.removeLayer(tiles);
+        tiles = L.tileLayer(scheme(e.matches), {
+          subdomains: 'abcd',
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        }).addTo(map);
+      });
+
+      // A div icon rather than Leaflet's default PNG: it inherits the site's
+      // colours, scales on hover, and sidesteps the bundled-image-path problem.
+      const icon = (n, active) =>
+        L.divIcon({
+          className: 'pin-wrap',
+          html: `<span class="pin${active ? ' is-active' : ''}">${n}</span>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14],
+          popupAnchor: [0, -16],
+        });
+
+      const markers = pins.map((p) =>
+        L.marker([p.lat, p.lng], { icon: icon(p.n, false), title: p.name })
+          .addTo(map)
+          .bindPopup(
+            `<strong>${escapeHtml(p.name)}</strong>` +
+              (p.note ? `<br><span class="pop-note">${escapeHtml(p.note)}</span>` : '')
+          )
+      );
+
+      map.fitBounds(L.latLngBounds(pins.map((p) => [p.lat, p.lng])), {
+        padding: [48, 48],
+        maxZoom: 15,
+      });
+
+      const items = Array.from(document.querySelectorAll('.place'));
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let activeIdx = -1;
+
+      function activate(idx, pan) {
+        if (activeIdx === idx) return;
+        if (markers[activeIdx]) markers[activeIdx].setIcon(icon(activeIdx + 1, false));
+        items[activeIdx]?.classList.remove('is-active');
+
+        activeIdx = idx;
+        if (idx < 0) return;
+
+        markers[idx].setIcon(icon(idx + 1, true));
+        items[idx].classList.add('is-active');
+        if (pan) {
+          map.panTo(markers[idx].getLatLng(), { animate: !reduceMotion });
+          markers[idx].openPopup();
+        }
+      }
+
+      document.querySelectorAll('.place-hit').forEach((btn) => {
+        const idx = Number(btn.dataset.idx);
+        btn.addEventListener('click', () => activate(idx, true));
+        btn.addEventListener('mouseenter', () => activate(idx, false));
+        btn.addEventListener('focus', () => activate(idx, false));
+      });
+
+      markers.forEach((m, idx) => {
+        m.on('click', () => {
+          activate(idx, false);
+          items[idx].scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      });
+
+      function escapeHtml(s) {
+        return s.replace(/[&<>"']/g, (c) =>
+          ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
+        );
+      }
+    }
+  </script>
+</Base>

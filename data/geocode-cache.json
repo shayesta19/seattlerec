@@ -1,0 +1,149 @@
+{
+  "Espresso Vivace, Seattle, Washington, USA": {
+    "lat": 47.6238007,
+    "lng": -122.3207443,
+    "address": "Espresso Vivace, 532, Broadway East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+    "from": "nominatim"
+  },
+  "Victrola Coffee Roasters, Seattle, Washington, USA": {
+    "lat": 47.6109956,
+    "lng": -122.3386025,
+    "address": "Victrola Coffee Roasters, 300, Pine Street, Central Business District, Belltown, Seattle, King County, Washington, 98101, United States",
+    "from": "nominatim"
+  },
+  "Milstead & Co., Seattle, Washington, USA": {
+    "lat": 47.649393,
+    "lng": -122.3476154,
+    "address": "Milstead & Co., 754, North 34th Street, Fremont, Seattle, King County, Washington, 98103, United States",
+    "from": "nominatim"
+  },
+  "Analog Coffee, Seattle, Washington, USA": {
+    "lat": 47.6207259,
+    "lng": -122.325462,
+    "address": "Analog Coffee, 235, Summit Avenue East, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+    "from": "nominatim"
+  },
+  "Cafe Allegro, Seattle, Washington, USA": {
+    "lat": 47.6586927,
+    "lng": -122.312716,
+    "address": "Cafe Allegro, Northeast 42nd Street, Greek Row, University Heights, University District, Seattle, King County, Washington, 98195, United States",
+    "from": "nominatim"
+  },
+  "Elm Coffee Roasters, Seattle, Washington, USA": null,
+  "Canlis, Seattle, Washington, USA": {
+    "lat": 47.6430534,
+    "lng": -122.3467361,
+    "address": "Canlis, 2576, Aurora Avenue North, Fremont, Seattle, King County, Washington, 98109, United States",
+    "from": "nominatim"
+  },
+  "The Walrus and the Carpenter, Seattle, Washington, USA": {
+    "lat": 47.6636067,
+    "lng": -122.3801366,
+    "address": "The Walrus and the Carpenter, 4743, Ballard Avenue Northwest, Ballard, Seattle, King County, Washington, 98107, United States",
+    "from": "nominatim"
+  },
+  "Spinasse, Seattle, Washington, USA": {
+    "lat": 47.6150591,
+    "lng": -122.3143994,
+    "address": "Cascina Spinasse, 1531, 14th Avenue, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "Altura, Seattle, Washington, USA": {
+    "lat": 47.6248147,
+    "lng": -122.3211555,
+    "address": "Altura, 617, Broadway East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+    "from": "nominatim"
+  },
+  "Bateau, Seattle, Washington, USA": null,
+  "Kedai Makan, Seattle, Washington, USA": {
+    "lat": 47.6151546,
+    "lng": -122.312985,
+    "address": "Kedai Makan, 1449, East Pine Street, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "Discovery Park, Seattle, Washington, USA": {
+    "lat": 47.6618111,
+    "lng": -122.4219145,
+    "address": "Discovery Park, 3801, Magnolia, Seattle, King County, Washington, 98199, United States",
+    "from": "nominatim"
+  },
+  "Kubota Garden, Seattle, Washington, USA": {
+    "lat": 47.5128166,
+    "lng": -122.266071,
+    "address": "Kubota Garden, 9817, Rainier Beach, Seattle, King County, Washington, 98118, United States",
+    "from": "nominatim"
+  },
+  "Washington Park Arboretum, Seattle, Washington, USA": {
+    "lat": 47.6351836,
+    "lng": -122.2964673,
+    "address": "Washington Park Arboretum, 2300, Madison Park, Seattle, King County, Washington, 98112, United States",
+    "from": "nominatim"
+  },
+  "Golden Gardens Park, Seattle, Washington, USA": {
+    "lat": 47.6921997,
+    "lng": -122.4029796,
+    "address": "Golden Gardens Park, 8498, Ballard, Seattle, King County, Washington, 98117, United States",
+    "from": "nominatim"
+  },
+  "Alki Beach, Seattle, Washington, USA": {
+    "lat": 47.5816765,
+    "lng": -122.4052299,
+    "address": "Alki Beach, West Seattle, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Gas Works Park, Seattle, Washington, USA": {
+    "lat": 47.6455976,
+    "lng": -122.3349284,
+    "address": "Gas Works Park, 2101, Fremont, Seattle, King County, Washington, 98103, United States",
+    "from": "nominatim"
+  },
+  "Seattle Art Museum, Seattle, Washington, USA": {
+    "lat": 47.6077008,
+    "lng": -122.3385575,
+    "address": "Seattle Art Museum, 1300, 1st Avenue, West Edge, Belltown, Seattle, King County, Washington, 98101, United States",
+    "from": "nominatim"
+  },
+  "Elliott Bay Book Company, Seattle, Washington, USA": {
+    "lat": 47.6146657,
+    "lng": -122.319677,
+    "address": "Elliott Bay Book Company, 1521, 10th Avenue, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "The Museum of Flight, Seattle, Washington, USA": null,
+  "Chihuly Garden and Glass, Seattle, Washington, USA": {
+    "lat": 47.6205296,
+    "lng": -122.3502071,
+    "address": "Chihuly Garden and Glass, 305, Harrison Street, Uptown, Belltown, Seattle, King County, Washington, 98109, United States",
+    "from": "nominatim"
+  },
+  "Seattle Central Library, Seattle, Washington, USA": {
+    "lat": 47.6067142,
+    "lng": -122.3326983,
+    "address": "The Seattle Public Library - Central Library, 1000, 4th Avenue, Central Business District, First Hill, Seattle, King County, Washington, 98104, United States",
+    "from": "nominatim"
+  },
+  "Museum of Pop Culture, Seattle, Washington, USA": {
+    "lat": 47.6214931,
+    "lng": -122.3482253,
+    "address": "MoPOP: Museum of Pop Culture, 5th Avenue North, Belltown, Seattle, King County, Washington, 98109, United States",
+    "from": "nominatim"
+  },
+  "240 2nd Avenue South, Seattle, WA 98104": {
+    "lat": 47.6001618,
+    "lng": -122.3313409,
+    "address": "Good Bar, 240, 2nd Avenue South, First Hill, Seattle, King County, Washington, 98104, United States",
+    "from": "nominatim"
+  },
+  "1040 East Union Street, Seattle, WA 98122": {
+    "lat": 47.6130765,
+    "lng": -122.3185364,
+    "address": "1040, East Union Street, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "Museum of Flight, 9404 East Marginal Way South, Seattle, WA": {
+    "lat": 47.5183592,
+    "lng": -122.2964955,
+    "address": "Museum of Flight, 9404, East Marginal Way South, Seattle, King County, Washington, 98108, United States",
+    "from": "nominatim"
+  }
+}

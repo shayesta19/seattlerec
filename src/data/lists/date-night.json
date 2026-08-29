@@ -1,0 +1,65 @@
+{
+  "name": "Date night",
+  "slug": "date-night",
+  "emoji": "🍷",
+  "order": 2,
+  "blurb": "The ones worth booking ahead for, and the ones worth queuing for.",
+  "sample": true,
+  "updated": "2026-08-29",
+  "places": [
+    {
+      "name": "Canlis",
+      "note": "The special-occasion one. Book weeks out and wear the good shirt.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Canlis+Seattle",
+      "lat": 47.6430534,
+      "lng": -122.3467361,
+      "address": "Canlis, 2576, Aurora Avenue North, Fremont, Seattle, King County, Washington, 98109, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "The Walrus and the Carpenter",
+      "note": "Oysters in Ballard. Go at 4pm or wait an hour.",
+      "url": "https://www.google.com/maps/search/?api=1&query=The+Walrus+and+the+Carpenter+Seattle",
+      "lat": 47.6636067,
+      "lng": -122.3801366,
+      "address": "The Walrus and the Carpenter, 4743, Ballard Avenue Northwest, Ballard, Seattle, King County, Washington, 98107, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Spinasse",
+      "note": "Hand-cut tajarin. Sit at the counter and watch it happen.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Spinasse+Seattle",
+      "lat": 47.6150591,
+      "lng": -122.3143994,
+      "address": "Cascina Spinasse, 1531, 14th Avenue, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Altura",
+      "note": "Tasting menu, Capitol Hill, no phone on the table.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Altura+Seattle",
+      "lat": 47.6248147,
+      "lng": -122.3211555,
+      "address": "Altura, 617, Broadway East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Bateau",
+      "note": "Steak, and they tell you which cow. Odd and wonderful.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Bateau+Seattle",
+      "lat": 47.6130765,
+      "lng": -122.3185364,
+      "address": "1040, East Union Street, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Kedai Makan",
+      "note": "Malaysian, hot, and the line moves. Cash-adjacent energy.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Kedai+Makan+Seattle",
+      "lat": 47.6151546,
+      "lng": -122.312985,
+      "address": "Kedai Makan, 1449, East Pine Street, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim"
+    }
+  ]
+}

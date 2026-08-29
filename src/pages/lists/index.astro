@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const lists = (await getCollection('lists'))
+  .filter((l) => !l.data.hidden)
+  .sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
+
+const anySample = lists.some((l) => l.data.sample);
+
+// Each tile carries a little constellation of its own pins: the list's places
+// normalised into the tile's box, so a tightly clustered list reads as tight
+// and a list spread across the city reads as spread. It is a real preview of
+// the map, drawn from the same coordinates, with nothing to load.
+function constellation(places: { lat: number; lng: number }[]) {
+  const lats = places.map((p) => p.lat);
+  const lngs = places.map((p) => p.lng);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+
+  // A single point, or a perfectly straight line of them, would divide by zero.
+  const spanLat = Math.max(maxLat - minLat, 0.004);
+  const spanLng = Math.max(maxLng - minLng, 0.004);
+  const pad = 12;
+  const box = 100 - pad * 2;
+
+  return places.map((p) => ({
+    x: pad + ((p.lng - (minLng + maxLng) / 2) / spanLng + 0.5) * box,
+    y: pad + (0.5 - (p.lat - (minLat + maxLat) / 2) / spanLat) * box, // north is up
+  }));
+}
+
+const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
+---
+
+<Base
+  title="The lists — seattlerec.com"
+  description="Saved Seattle places, grouped the way you would actually use them: coffee, date night, outdoors, rainy days. Every list opens onto a map."
+>
+  <header class="hero hero-sm">
+    <div class="wrap-wide">
+      <p class="eyebrow"><a href="/">Seattle, explained</a> &nbsp;/&nbsp; the lists</p>
+      <h1>The <em>lists</em></h1>
+      <p class="lede">
+        {totalPlaces} places across {lists.length} lists, saved because someone
+        actually went. Open one and you get the map and the reasons together.
+      </p>
+    </div>
+  </header>
+
+  {anySample && (
+    <div class="wrap-wide">
+      <p class="sample-note">
+        <strong>Sample data.</strong> These are placeholder lists so the board is
+        real to click through. Run <code>npm run import:lists</code> against a
+        Google Takeout export to replace them with the actual saved lists.
+      </p>
+    </div>
+  )}
+
+  <main class="board-wrap">
+    <div class="wrap-wide">
+      <div class="board">
+        {lists.map((l) => {
+          const pts = constellation(l.data.places);
+          const preview = l.data.places.slice(0, 3).map((p) => p.name);
+          const more = l.data.places.length - preview.length;
+          return (
+            <a class="tile" href={`/lists/${l.data.slug}/`}>
+              <svg class="tile-map" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
+                {pts.map((pt) => <circle cx={pt.x} cy={pt.y} r="2.6" />)}
+              </svg>
+              <div class="tile-body">
+                <span class="tile-emoji" aria-hidden="true">{l.data.emoji ?? '📍'}</span>
+                <h2>{l.data.name}</h2>
+                {l.data.blurb && <p class="tile-blurb">{l.data.blurb}</p>}
+                <p class="tile-preview">
+                  {preview.join(' · ')}{more > 0 && <span class="more"> · +{more} more</span>}
+                </p>
+              </div>
+              <div class="tile-foot">
+                <span class="count">{l.data.places.length} places</span>
+                <span class="go" aria-hidden="true">Open map →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="big">New to the city?</p>
+      <p>
+        Start with <a href="/">the guide</a> — how the place is shaped, how to move
+        through it, and which of the things you have heard are actually true.
+      </p>
+    </div>
+  </footer>
+</Base>

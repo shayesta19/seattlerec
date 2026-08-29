@@ -1,0 +1,6 @@
+{
+  "_comment": "Place name -> a search string the geocoder can actually find. Only needed when a plain name search comes back empty, which the importer tells you about by name.",
+  "Elm Coffee Roasters": "240 2nd Avenue South, Seattle, WA 98104",
+  "Bateau": "1040 East Union Street, Seattle, WA 98122",
+  "The Museum of Flight": "Museum of Flight, 9404 East Marginal Way South, Seattle, WA"
+}

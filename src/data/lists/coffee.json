@@ -1,0 +1,65 @@
+{
+  "name": "Coffee",
+  "slug": "coffee",
+  "emoji": "☕",
+  "order": 1,
+  "blurb": "Where to sit down with a laptop, a book, or nobody at all.",
+  "sample": true,
+  "updated": "2026-08-29",
+  "places": [
+    {
+      "name": "Espresso Vivace",
+      "note": "Cap on the sidewalk. The rosetta on top is the whole point.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Espresso+Vivace+Seattle",
+      "lat": 47.6238007,
+      "lng": -122.3207443,
+      "address": "Espresso Vivace, 532, Broadway East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Victrola Coffee Roasters",
+      "note": "Capitol Hill's long table. Good for two hours of not moving.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Victrola+Coffee+Roasters+Seattle",
+      "lat": 47.6109956,
+      "lng": -122.3386025,
+      "address": "Victrola Coffee Roasters, 300, Pine Street, Central Business District, Belltown, Seattle, King County, Washington, 98101, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Milstead & Co.",
+      "note": "Fremont. They rotate roasters, so ask what is on today.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Milstead+and+Co+Seattle",
+      "lat": 47.649393,
+      "lng": -122.3476154,
+      "address": "Milstead & Co., 754, North 34th Street, Fremont, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Analog Coffee",
+      "note": "Small, loud, excellent. Corner windows on a grey day.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Analog+Coffee+Seattle",
+      "lat": 47.6207259,
+      "lng": -122.325462,
+      "address": "Analog Coffee, 235, Summit Avenue East, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Cafe Allegro",
+      "note": "Down an alley by the U District. Oldest espresso bar in the city.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Cafe+Allegro+Seattle",
+      "lat": 47.6586927,
+      "lng": -122.312716,
+      "address": "Cafe Allegro, Northeast 42nd Street, Greek Row, University Heights, University District, Seattle, King County, Washington, 98195, United States",
+      "source": "nominatim"
+    },
+    {
+      "name": "Elm Coffee Roasters",
+      "note": "Pioneer Square. Quiet, bright, and the pastry case is real.",
+      "url": "https://www.google.com/maps/search/?api=1&query=Elm+Coffee+Roasters+Seattle",
+      "lat": 47.6001618,
+      "lng": -122.3313409,
+      "address": "Good Bar, 240, 2nd Avenue South, First Hill, Seattle, King County, Washington, 98104, United States",
+      "source": "nominatim"
+    }
+  ]
+}
