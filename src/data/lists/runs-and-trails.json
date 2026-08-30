@@ -2,10 +2,6 @@
   "name": "Runs and trails",
   "slug": "runs-and-trails",
   "curated": true,
-  "emoji": "🏃",
-  "order": 2,
-  "blurb": "Flat loops, wooded ravines, and 27 paved miles that cross the whole city.",
-  "updated": "2026-08-30",
   "places": [
     {
       "name": "Burke-Gilman Trail",
@@ -100,5 +96,9 @@
         "water"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-30",
+  "blurb": "Flat loops, wooded ravines, and 27 paved miles that cross the whole city.",
+  "emoji": "🏃",
+  "order": 2
 }

@@ -35,6 +35,7 @@
 import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { loadOverrides, applyOverride } from './lib/overrides.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT_DIR = path.join(ROOT, 'src', 'data', 'lists');
@@ -179,7 +180,7 @@ function reviewTags(p) {
 const CURATED_LIST = ['name', 'blurb', 'emoji', 'order', 'cover', 'hidden'];
 const CURATED_PLACE = ['blurb', 'cover'];
 
-async function writeList(spec) {
+async function writeList(spec, overrides) {
   const file = path.join(OUT_DIR, spec.slug + '.json');
   let prev = null;
   if (existsSync(file)) {
@@ -207,6 +208,8 @@ async function writeList(spec) {
     places,
   };
   for (const k of CURATED_LIST) if (prev?.[k] !== undefined) out[k] = prev[k];
+  const note = applyOverride(out, spec.name, overrides || {});
+  if (note) console.log('    ' + note);
 
   if (DRY) console.log('  (dry run) ' + spec.slug + ': ' + places.length + ' places');
   else await writeFile(file, JSON.stringify(out, null, 2) + '\n');
@@ -223,6 +226,7 @@ async function main() {
   for (const d of dirs) console.log('Reading ' + path.relative(ROOT, d));
 
   const rules = await loadRules();
+  const overrides = await loadOverrides(ROOT);
   const verdict = makeFilter(rules);
   await mkdir(OUT_DIR, { recursive: true });
 
@@ -303,7 +307,7 @@ async function main() {
     order: 1,
     blurb: 'Places actually visited and reviewed, with the ratings left as they were written.',
     places: beenThere,
-  });
+  }, overrides);
 
   await writeList({
     slug: 'want-to-go',
@@ -312,7 +316,7 @@ async function main() {
     order: 2,
     blurb: 'Saved, bookmarked, not yet been. The running shortlist.',
     places: wantToGo,
-  });
+  }, overrides);
 
   console.log('\nbeen-there: ' + beenThere.length + ' places');
   console.log('want-to-go: ' + wantToGo.length + ' places');

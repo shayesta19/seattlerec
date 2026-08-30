@@ -2,10 +2,6 @@
   "name": "Coffee to sit in",
   "slug": "coffee-to-sit-in",
   "curated": true,
-  "emoji": "☕",
-  "order": 3,
-  "blurb": "Not coffee to take away. Coffee to stay three hours over.",
-  "updated": "2026-08-30",
   "places": [
     {
       "name": "Analog Coffee",
@@ -95,5 +91,9 @@
         "coffee"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-30",
+  "blurb": "Not coffee to take away. Coffee to stay three hours over.",
+  "emoji": "☕",
+  "order": 3
 }

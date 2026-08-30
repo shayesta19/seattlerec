@@ -2,10 +2,6 @@
   "name": "Views",
   "slug": "views",
   "curated": true,
-  "emoji": "⛰️",
-  "order": 5,
-  "blurb": "Where the city finally makes sense as a shape. Go at dusk.",
-  "updated": "2026-08-30",
   "places": [
     {
       "name": "Kerry Park",
@@ -98,5 +94,9 @@
         "water"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-30",
+  "blurb": "Where the city finally makes sense as a shape. Go at dusk.",
+  "emoji": "⛰️",
+  "order": 5
 }

@@ -23,6 +23,7 @@
 import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { loadOverrides, applyOverride } from './lib/overrides.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 // Two kinds of list, same pipeline. `takeout` is whatever Google exported --
@@ -204,6 +205,7 @@ async function main() {
   }
 
   await loadCache();
+  const overrides = await loadOverrides(ROOT);
   await mkdir(OUT_DIR, { recursive: true });
 
   let totalPlaces = 0;
@@ -286,6 +288,10 @@ async function main() {
       updated: new Date().toISOString().slice(0, 10),
     };
     for (const k of CURATED_LIST) if (prev && prev[k] !== undefined) out[k] = prev[k];
+
+    // Config wins over whatever the last run left behind.
+    const note = applyOverride(out, listName, overrides);
+    if (note) console.log('    ' + note);
 
     if (DRY) console.log('  (dry run) would write ' + places.length + ' places');
     else await writeFile(path.join(OUT_DIR, slug + '.json'), JSON.stringify(out, null, 2) + '\n');

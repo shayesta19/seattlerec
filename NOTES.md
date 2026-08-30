@@ -323,3 +323,46 @@ handled:
   covers the Eastside or points at it.
 - `salons` and `places to buy gifts` may not belong on a public city guide at
   all. Currently grouped into "Errands and elsewhere", low on the page.
+
+## List decisions from Shaye (30 Aug 2026)
+
+Answers to the three open questions, now encoded in `data/list-overrides.json`
+rather than hand-edited into the generated JSON — so they survive re-import:
+
+| List | Decision | How |
+|---|---|---|
+| `salons` | Skip for now | `"hidden": true` |
+| `places to buy gifts` | Skip for now | `"hidden": true` |
+| `bellevue` | Keep. Shaye will break it up by category later. | Own board group, "Across the lake", with a blurb saying so |
+| `favorites` | Keep, renamed | **The short list** — "The ones that get recommended without hesitating first." |
+| `starred places` | Keep, renamed | **Starred and never sorted** — "Years of one-tap saves that never got filed anywhere." |
+
+Hidden lists are dropped by `getStaticPaths`, so they get no page built at all,
+not just hidden from the board. Verified.
+
+### Why overrides are a file and not an edit
+
+`src/data/lists/*.json` is **generated**. The importers already carry forward
+hand-written per-place blurbs, but list-level metadata — the name, whether it
+appears — is exactly the kind of thing that quietly reverts three imports later
+if it lives in two places.
+
+So `data/list-overrides.json` is the single source of truth for list `name`,
+`emoji`, `order`, `blurb`, `cover` and `hidden`, keyed by the slugified source
+list name (i.e. the Takeout CSV filename). It is applied **after** the
+carry-forward merge, so it always wins. Both importers share
+`tools/lib/overrides.mjs`, and each run prints what it changed:
+
+```
+- favorites (1 rows)
+    renamed to "The short list", emoji, order, blurb
+- salons (1 rows)
+    hidden
+```
+
+Nothing gets renamed silently.
+
+### Board groups now
+`Start here` (curated) · `Eat` · `Coffee, sweets and a drink` · `Outside` ·
+`Across the lake` · `From my own maps` (catch-all, holds the two renamed
+defaults plus been-there / want-to-go).

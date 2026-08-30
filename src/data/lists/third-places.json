@@ -2,10 +2,6 @@
   "name": "Third places",
   "slug": "third-places",
   "curated": true,
-  "emoji": "🪑",
-  "order": 4,
-  "blurb": "Somewhere that is not work and not home, where nobody asks you to leave.",
-  "updated": "2026-08-30",
   "places": [
     {
       "name": "Seattle Central Library",
@@ -96,5 +92,9 @@
         "third"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-30",
+  "blurb": "Somewhere that is not work and not home, where nobody asks you to leave.",
+  "emoji": "🪑",
+  "order": 4
 }

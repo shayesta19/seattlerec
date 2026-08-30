@@ -2,10 +2,6 @@
   "name": "Water",
   "slug": "water",
   "curated": true,
-  "emoji": "🌊",
-  "order": 1,
-  "blurb": "You are looking for a Charles River. There are three, and they are all better.",
-  "updated": "2026-08-30",
   "places": [
     {
       "name": "Green Lake Park",
@@ -99,5 +95,9 @@
         "water"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-30",
+  "blurb": "You are looking for a Charles River. There are three, and they are all better.",
+  "emoji": "🌊",
+  "order": 1
 }

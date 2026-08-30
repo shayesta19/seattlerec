@@ -1,0 +1,26 @@
+{
+  "_comment": "List-level metadata, keyed by the slugified name of the source list (the Takeout CSV filename). This file wins over anything in the generated JSON, so renaming or hiding a list survives every re-import. Per-place blurbs still live in src/data/lists/*.json and are merged separately.",
+
+  "favorites": {
+    "name": "The short list",
+    "emoji": "💛",
+    "order": 6,
+    "blurb": "The ones that get recommended without hesitating first."
+  },
+
+  "starred-places": {
+    "name": "Starred and never sorted",
+    "emoji": "✳️",
+    "order": 7,
+    "blurb": "Years of one-tap saves that never got filed anywhere. Unfiltered, occasionally random, occasionally the best thing here."
+  },
+
+  "bellevue": {
+    "emoji": "🌉",
+    "order": 8,
+    "blurb": "Everything saved across the lake, still in one pile. Being broken up by category later."
+  },
+
+  "salons": { "hidden": true },
+  "places-to-buy-gifts": { "hidden": true }
+}
