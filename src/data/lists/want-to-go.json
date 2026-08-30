@@ -1,0 +1,153 @@
+{
+  "name": "Want to go",
+  "slug": "want-to-go",
+  "emoji": "📌",
+  "order": 2,
+  "blurb": "Saved, bookmarked, not yet been. The running shortlist.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Piedmont Café",
+      "url": "http://maps.google.com/?cid=6710351005972729570",
+      "lat": 47.6115511,
+      "lng": -122.3242818,
+      "address": "1215 Seneca St Ste 100, Seattle, WA 98101, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-05"
+      ]
+    },
+    {
+      "name": "Espresso Vivace Capitol Hill",
+      "url": "http://maps.google.com/?cid=2732031702180546416",
+      "lat": 47.6237833,
+      "lng": -122.3206193,
+      "address": "532 Broadway E, Seattle, WA 98102, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-04"
+      ]
+    },
+    {
+      "name": "K-Cafe, Da Bang",
+      "url": "http://maps.google.com/?cid=17379722074143602016",
+      "lat": 47.8332538,
+      "lng": -122.27829,
+      "address": "3333 184th St SW Ste x, Lynnwood, WA 98037, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-03"
+      ]
+    },
+    {
+      "name": "장안설렁탕JangAn Sullungtang Lynnwood",
+      "url": "http://maps.google.com/?cid=5196871423266033969",
+      "lat": 47.8216151,
+      "lng": -122.3168907,
+      "address": "19520 Hwy 99 #100, Lynnwood, WA 98036, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-03"
+      ]
+    },
+    {
+      "name": "Olympic Bar",
+      "url": "http://maps.google.com/?cid=9820469142538647675",
+      "lat": 47.6079956,
+      "lng": -122.3338074,
+      "address": "411 University St, Seattle, WA 98101, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-03"
+      ]
+    },
+    {
+      "name": "canon",
+      "url": "http://maps.google.com/?cid=9078151889971377736",
+      "lat": 47.6112874,
+      "lng": -122.3165567,
+      "address": "928 12th Ave, Seattle, WA 98122, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-03"
+      ]
+    },
+    {
+      "name": "Dosa House",
+      "url": "http://maps.google.com/?cid=11308932208250006670",
+      "lat": 47.6281877,
+      "lng": -122.1355835,
+      "address": "15259 NE Bel Red Rd, Bellevue, WA 98007, United States",
+      "source": "url",
+      "tags": [
+        "saved 2025-01"
+      ]
+    },
+    {
+      "name": "Archie McPhee",
+      "url": "http://maps.google.com/?cid=10924378835867123428",
+      "lat": 47.6616019,
+      "lng": -122.3417195,
+      "address": "1300 N 45th St, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "saved 2024-11"
+      ]
+    },
+    {
+      "name": "Volunteer Park Cafe & Pantry",
+      "url": "http://maps.google.com/?cid=3495492473368015377",
+      "lat": 47.6324747,
+      "lng": -122.3101398,
+      "address": "1501 17th Ave E, Seattle, WA 98112, United States",
+      "source": "url",
+      "tags": [
+        "saved 2024-11"
+      ]
+    },
+    {
+      "name": "Yumm Mochi",
+      "url": "http://maps.google.com/?cid=9510469164913315905",
+      "lat": 47.6244731,
+      "lng": -122.3212562,
+      "address": "605 Broadway E, Seattle, WA 98102, United States",
+      "source": "url",
+      "tags": [
+        "saved 2024-10"
+      ]
+    },
+    {
+      "name": "Blazing Bagels",
+      "url": "http://maps.google.com/?cid=15462269331173627175",
+      "lat": 47.6665764,
+      "lng": -122.3000234,
+      "address": "2510 NE Blakeley St, Seattle, WA 98105, United States",
+      "source": "url",
+      "tags": [
+        "saved 2024-10"
+      ]
+    },
+    {
+      "name": "Oma Bap",
+      "url": "http://maps.google.com/?cid=15892650157707498857",
+      "lat": 47.6162818,
+      "lng": -122.3180174,
+      "address": "1640 11th Ave, Seattle, WA 98122, United States",
+      "source": "url",
+      "tags": [
+        "saved 2024-07"
+      ]
+    },
+    {
+      "name": "J'aime Les Crêpes ​Crêperie",
+      "url": "http://maps.google.com/?cid=13260731164699396674",
+      "lat": 47.7972183,
+      "lng": -122.4968061,
+      "address": "11264 WA-104, Kingston, WA 98346, United States",
+      "source": "url",
+      "tags": [
+        "saved 2023-12"
+      ]
+    }
+  ]
+}

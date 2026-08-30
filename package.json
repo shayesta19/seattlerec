@@ -8,8 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "import:lists": "node tools/import-lists.mjs",
-    "import:lists:dry": "node tools/import-lists.mjs --dry-run"
+    "import:lists": "node tools/import-lists.mjs && node tools/import-takeout.mjs",
+    "import:lists:dry": "node tools/import-lists.mjs --dry-run && node tools/import-takeout.mjs --dry-run"
   },
   "dependencies": {
     "astro": "^7.2.8",

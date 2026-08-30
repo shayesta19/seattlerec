@@ -1,0 +1,21 @@
+{
+  "_comment": "Curation rules for import-takeout.mjs. excludeNames and excludePatterns drop a place; alwaysInclude overrides every filter, including the region and star-rating ones. Everything filtered is printed by name at the end of each run.",
+  "excludeNames": [
+    "700 Broadway"
+  ],
+  "excludePatterns": [
+    "apartments?\\b",
+    "\\bdental\\b",
+    "\\bclinic\\b",
+    "\\bdr\\.",
+    "verizon",
+    "ulta beauty",
+    "supermarket",
+    "galleria",
+    "\\bwalk of fame\\b",
+    "university .*store",
+    "security services",
+    "^\\d+\\s+\\w"
+  ],
+  "alwaysInclude": []
+}

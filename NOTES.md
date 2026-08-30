@@ -38,46 +38,100 @@
 2. Voice check on the drafts — too blunt, not blunt enough, or right?
 3. Do you want the neighborhoods as their own scroll section in v1, or held for the v2 deck?
 
-## Lists board (added 29 Aug 2026)
+## Lists board (30 Aug 2026)
 
-`/lists` is a board of tiles, one per saved Google Maps list; each tile opens
+`/lists` is a board of tiles, one per saved list; each tile opens
 `/lists/<slug>` — a Leaflet map beside the places, cross-linked both ways.
+Currently two lists, **Been there** (23) and **Want to go** (13), built from
+Shaye's real Takeout export.
 
-### How the data gets in
-Google has **no public API for personal saved lists**. The only reliable route
-is Takeout:
+### PRIVACY — read this before touching the export
 
-1. takeout.google.com → Deselect all → tick **Saved** → export → unzip
-2. Copy the CSVs out of `Takeout/Saved/` into `data/takeout/`
-3. `npm run import:lists` (`--dry-run` variant available)
+The Takeout folders sitting in the project root contain raw personal data. In
+particular `Maps/My labeled places/Labeled places.json` holds the **home
+address** and a friend's home address. This repo is public and deploys to
+Vercel on push.
 
-Takeout gives Title / Note / URL and **no coordinates**. The importer pulls
-lat/lng straight out of the Maps URL where Google embedded it (`!3d!4d`, `@`,
-`ll=`) and geocodes the rest against Nominatim — 1 req/sec per their policy,
-cached in `data/geocode-cache.json` so re-runs are free.
+`takeout-*/`, `Takeout/` and `data/takeout/` are all in `.gitignore`. Do not
+remove those lines, and do not `git add -f` anything under them. Nothing in
+"My labeled places" is read by any importer, on purpose.
 
-- Places a name search can't find go in `data/geocode-aliases.json` as
-  `"Place name": "street address, Seattle, WA"`. The importer names them.
-- Curation survives re-import: `name`, `blurb`, `emoji`, `order`, `cover`,
-  `hidden` on a list, and `blurb`, `cover`, `tags` on a place.
-- The zod schema in `src/content.config.ts` **requires** lat/lng, so a place
-  without coordinates fails the build instead of shipping a hole in the map.
+### What the export actually contained
 
-### Current state
-The four lists in `src/data/lists/` are **sample data** (`"sample": true`),
-generated from hand-written CSVs in `data/takeout/` so the board is real to
-click through. They render a "sample data" badge. Re-importing a real list with
-the same slug clears the flag automatically; otherwise delete the JSON.
+Takeout was run with **Maps** and **Maps (your places)** ticked, but not
+**Saved** — and *Saved* is the separate top-level product that holds the named
+lists (Favorites, Want to go, Starred places, and any custom lists). So the
+named lists are not in this export. What is:
+
+| File | Contents |
+|---|---|
+| `Maps (your places)/Saved Places.json` | 30 bookmarked places, one flat pile, real coordinates |
+| `Maps (your places)/Reviews.json` | 41 reviews with star ratings, review text and the meal-type/price questionnaire |
+| `Maps/My labeled places/Labeled places.json` | Home + a friend's home. **Never published.** |
+
+**To get the real named lists**: re-run Takeout, deselect all, tick **Saved**
+(not "Maps"), export, and drop the CSVs from `Takeout/Saved/` into
+`data/takeout/`. Then `npm run import:lists`. They will appear as extra tiles
+alongside the two derived ones.
+
+### The two importers
+
+`npm run import:lists` runs both, in this order:
+
+1. **`tools/import-lists.mjs`** — the CSVs in `data/takeout/`, one list per
+   file. Pulls lat/lng out of the Maps URL where Google embedded it
+   (`!3d!4d`, `@`, `ll=`) and geocodes the rest against Nominatim at 1 req/sec,
+   cached in `data/geocode-cache.json`. Places a name search cannot find go in
+   `data/geocode-aliases.json` as `"Name": "street address, Seattle, WA"`.
+   Currently a no-op — there are no CSVs yet.
+2. **`tools/import-takeout.mjs`** — the two GeoJSON files above. Finds any
+   `Maps (your places)` folder under the project, so the export can be unzipped
+   anywhere. Both files carry real coordinates, so nothing gets geocoded.
+
+Neither GeoJSON file records list membership, so the second importer derives
+two lists from the shape of the data: reviewed → **Been there**, saved but
+never reviewed → **Want to go**.
+
+### What gets filtered, and why
+
+Three filters run before anything is written, because a raw Maps history is not
+a publishable document. Everything dropped is printed by name at the end of the
+run — nothing disappears silently.
+
+- **Region** — greater Seattle only (lat 47.0–48.3, lng −122.9 to −121.5). Drops
+  the Boston, LA, Chennai, Frisco and Big Sur saves.
+- **Personal** — apartments, dental, clinics, Verizon, Ulta, supermarkets,
+  malls, and any place whose name is a bare street number. This is what caught
+  the 2024 apartment hunt (Greenlake Terrace, Vue on Harvard, 700 Broadway).
+- **Rating** — 1★ and 2★ reviews are withheld. They name small businesses and
+  accuse staff, which is a different act on your own site than on a Google
+  profile. Four reviews are held back by this: Qamaria, SabbVerr Thai, Subway,
+  Coffee Tree.
+
+Override any of it in `data/list-rules.json` — `alwaysInclude` beats every
+filter, including region and rating.
 
 ### Map
-Leaflet 1.9 bundled locally (no CDN), CARTO `light_all` / `dark_all` basemaps
-picked from `prefers-color-scheme` and swapped live. No API key, no billing.
-CARTO's free tier is fine at this volume — if traffic grows, move to a MapTiler
-or Protomaps key. Markers are `L.divIcon`, so they inherit the site palette and
-sidestep Leaflet's bundled-image-path problem.
+
+Leaflet 1.9, bundled locally, no CDN. **OpenStreetMap's own tiles** — no API
+key, no account, no billing. CARTO's basemaps went key-only (they now serve
+tiles watermarked "API KEY REQUIRED"), which is why the first version had to be
+swapped out. There is no dark variant of the standard OSM tiles, so dark mode
+inverts and hue-rotates the tile pane; markers and popups sit above the filter
+and keep their real colours.
+
+If traffic ever outgrows OSM's tile policy, Protomaps (self-hosted `.pmtiles`
+in `public/`) or Stadia (free tier, domain-locked key) are the upgrades.
+
+Markers are `L.divIcon`, so they inherit the site palette and sidestep
+Leaflet's bundled-image-path problem. The review questionnaire — star rating,
+meal type, price band — renders as the tag row under each place.
 
 ### Open / next
-- Replace the sample lists with the real Takeout export.
+- Re-export with **Saved** ticked to get the real named lists.
+- Voice check on `04-the-freeze.md` and `06-rules.md` — still unanswered.
+- Photos: `Maps/Photos and videos/` in the export has ~90 of Shaye's own place
+  photos with sidecar JSON. Not wired up. The `cover` field exists on both the
+  list and place schemas, unused.
 - Decide whether the board is the front door or stays behind the guide.
-- Photos per place (`cover` field is already in the schema, unused).
-- Filter or search across all lists once there are more than ~8.
+- Filter or search across lists once there are more than ~8.

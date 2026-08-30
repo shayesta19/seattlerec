@@ -65,6 +65,13 @@ const shortAddress = (a?: string) =>
                 <span class="place-main">
                   <span class="place-name">{p.name}</span>
                   {(p.note || p.blurb) && <span class="place-note">{p.blurb ?? p.note}</span>}
+                  {p.tags && p.tags.length > 0 && (
+                    <span class="place-tags">
+                      {p.tags.map((t) => (
+                        <span class={`tag${/^\d★$/.test(t) ? ' tag-stars' : ''}`}>{t}</span>
+                      ))}
+                    </span>
+                  )}
                   {shortAddress(p.address) && (
                     <span class="place-addr">{shortAddress(p.address)}</span>
                   )}
@@ -105,28 +112,24 @@ const shortAddress = (a?: string) =>
 
       const map = L.map(el, { scrollWheelZoom: false, zoomControl: true });
 
-      // CARTO ship a light and a dark basemap on the same tile scheme, so the
-      // map can follow the page theme instead of glowing white in dark mode.
-      const scheme = (dark) =>
-        `https://{s}.basemaps.cartocdn.com/${dark ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`;
-      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-      let tiles = L.tileLayer(scheme(darkQuery.matches), {
-        subdomains: 'abcd',
+      // OpenStreetMap's own tiles: no API key, no account, no billing. CARTO's
+      // basemaps went key-only, and every other hosted style wants a signup, so
+      // this is the one that just works. If traffic ever justifies it, a
+      // Protomaps or Stadia style would look better -- see NOTES.md.
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      darkQuery.addEventListener('change', (e) => {
-        map.removeLayer(tiles);
-        tiles = L.tileLayer(scheme(e.matches), {
-          subdomains: 'abcd',
-          maxZoom: 19,
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        }).addTo(map);
-      });
+      // There is no dark variant of the standard tiles, so dark mode inverts
+      // them and spins the hue back round -- water stays blue, parks stay
+      // green, and the paper goes dark. The filter is scoped to the tile pane
+      // so the markers and popups above it keep their real colours.
+      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const applyTheme = (dark) => el.classList.toggle('map-dark', dark);
+      applyTheme(darkQuery.matches);
+      darkQuery.addEventListener('change', (e) => applyTheme(e.matches));
 
       // A div icon rather than Leaflet's default PNG: it inherits the site's
       // colours, scales on hover, and sidesteps the bundled-image-path problem.

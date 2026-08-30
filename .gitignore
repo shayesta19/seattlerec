@@ -6,3 +6,9 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# Google Takeout exports. These contain raw personal data -- "My labeled
+# places" holds the home address -- and this repo is public.
+takeout-*/
+Takeout/
+data/takeout/

@@ -345,6 +345,9 @@ a:hover { color: var(--spruce); }
 @media (prefers-reduced-motion: reduce) { .pin.is-active { transform: none; } }
 
 .leaflet-container { font: inherit; background: var(--paper-warm); }
+.map-dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.88) saturate(.85);
+}
 .leaflet-popup-content-wrapper {
   border-radius: 10px; background: var(--card); color: var(--ink);
   box-shadow: 0 8px 26px rgba(16, 31, 26, .18);
@@ -372,3 +375,17 @@ a:hover { color: var(--spruce); }
   transition: opacity .15s ease;
 }
 .hero-cta a:hover { opacity: .88; color: var(--paper); }
+
+/* Tag row: star rating, meal type and price band pulled out of the review
+   questionnaire Google ships with each review. */
+.place-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.tag {
+  display: inline-block; padding: 2px 9px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--paper-warm);
+  font-size: 11.5px; font-weight: 500; letter-spacing: .02em; color: var(--ink-faint);
+  white-space: nowrap;
+}
+.tag-stars {
+  border-color: rgba(28, 107, 77, .32); background: rgba(28, 107, 77, .1);
+  color: var(--spruce); font-weight: 600;
+}

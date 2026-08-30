@@ -1,0 +1,310 @@
+{
+  "name": "Been there",
+  "slug": "been-there",
+  "emoji": "⭐",
+  "order": 1,
+  "blurb": "Places actually visited and reviewed, with the ratings left as they were written.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "A Ma Chicken Rice",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x258c6951bff61d30",
+      "lat": 47.6700729,
+      "lng": -122.1167766,
+      "address": "7405 168th Ave NE Suite 140, Redmond, WA 98052, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Dine in",
+        "Dinner",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "The Flour Box",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xdedbf8ec5212ed8f",
+      "lat": 47.5522032,
+      "lng": -122.2777884,
+      "address": "5520 Rainier Ave S, Seattle, WA 98118, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Take out",
+        "Other",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Jakob Two Trees",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xd81ca5ed2a626527",
+      "lat": 47.5241572,
+      "lng": -122.0324931,
+      "address": "Rainier Trail, Issaquah, WA 98027, United States",
+      "source": "url",
+      "tags": [
+        "5★"
+      ]
+    },
+    {
+      "name": "Gene Coulon Memorial Beach Park",
+      "note": "Fall colors as seen on Oct 19 2025",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xf013931cc63505a1",
+      "lat": 47.5068943,
+      "lng": -122.2020264,
+      "address": "1201 Lake Washington Blvd N, Renton, WA 98056, United States",
+      "source": "url",
+      "tags": [
+        "5★"
+      ]
+    },
+    {
+      "name": "D’ La Santa",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xa3bef3b9150cc53a",
+      "lat": 47.641242,
+      "lng": -122.320328,
+      "address": "2359 10th Ave E, Seattle, WA 98102, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "$20–30"
+      ]
+    },
+    {
+      "name": "Sisi Kay Thai Eatery and Bar",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x138222ecfdc99ebb",
+      "lat": 47.6615615,
+      "lng": -122.3385771,
+      "address": "1612 N 45th St, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Dinner",
+        "$30–50"
+      ]
+    },
+    {
+      "name": "Hangar Cafe",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x5d966f12b356b802",
+      "lat": 47.5467194,
+      "lng": -122.3164449,
+      "address": "6261 13th Ave S, Seattle, WA 98108, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Dine in",
+        "Brunch",
+        "$20–30"
+      ]
+    },
+    {
+      "name": "Haidilao Hot Pot Seattle",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x667f3c11493068e8",
+      "lat": 47.612587,
+      "lng": -122.3353584,
+      "address": "600 Pine St Ste 355, Seattle, WA 98101, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Dine in",
+        "Lunch",
+        "$50–100"
+      ]
+    },
+    {
+      "name": "R+M Dessert Bar",
+      "note": "The brownie with chocolate ganache is the best brownie I have had in Seattle! It's a perfect cake brownie with a rich delicious chocolate ganache on top. This is coming from someone who is not a big fan of sugar. I would highly recommend this dessert place!",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xde63f8633a7e02b4",
+      "lat": 47.6139377,
+      "lng": -122.3241612,
+      "address": "601 E Pike St, Seattle, WA 98122, United States",
+      "source": "url",
+      "tags": [
+        "5★",
+        "Take out",
+        "Other",
+        "$1–10"
+      ]
+    },
+    {
+      "name": "Seoul Tofu & Jjim",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xce4849dd59ae102e",
+      "lat": 47.6222499,
+      "lng": -122.3206002,
+      "address": "406 Broadway E, Seattle, WA 98102, United States",
+      "source": "url",
+      "tags": [
+        "5★"
+      ]
+    },
+    {
+      "name": "Yeobo Cafe and Bar",
+      "note": "The chicken salad Sando is so delicious!! It's so unique and flavorful than any chicken salad sandwich I have tried. It has a very nice Asian umami taste. The zesty lime and Serrano dressing with the pickled mint has such a refreshing flavor. This is my second sandwich I have tried here and both times the sandwiches were 10/10. They flavors are unique and different than sandwiches you will find elsewhere. I'm looking forward to trying more sandwiches. Good spot for getting work done. It's lively and bright and the music is not too loud.",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x2f75e5eae759fc30",
+      "lat": 47.6200784,
+      "lng": -122.3015259,
+      "address": "2332 E Madison St, Seattle, WA 98112, United States",
+      "source": "url",
+      "tags": [
+        "4★",
+        "Dine in",
+        "Breakfast",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Pacha Collective",
+      "note": "I had the butternut squash curry bowl and the earl grey lavender matcha. Both items were good. The butternut squash curry bowl tastes like butternut squash pieces in a Thai red curry but milder. All in all it's decent. The cafe is a Good place to do remote work from. Has a lively, bright atmosphere",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x46ce897a64fb7b40",
+      "lat": 47.6803548,
+      "lng": -122.324821,
+      "address": "7119 Woodlawn Ave NE, Seattle, WA 98115, United States",
+      "source": "url",
+      "tags": [
+        "4★",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Retreat",
+      "note": "Great ambience and food is decent. I got the breakfast scramble.",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x1b8ee9a8881bbbf0",
+      "lat": 47.6785317,
+      "lng": -122.3265269,
+      "address": "6900 East Green Lake Way N, Seattle, WA 98115, United States",
+      "source": "url",
+      "tags": [
+        "4★",
+        "Dine in",
+        "Breakfast",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Colman Park",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xf74f356f22aae0e1",
+      "lat": 47.5863216,
+      "lng": -122.2903944,
+      "address": "1740 Lake Washington Blvd S, Seattle, WA 98144, United States",
+      "source": "url",
+      "tags": [
+        "4★"
+      ]
+    },
+    {
+      "name": "Old Salt Fish and Bagel - Fremont",
+      "note": "Food was okay. Quantity is very less for the price. I got the smoked cod sandwich and a small drip coffee and it cost me $20.",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xf462c7e96fdd6f16",
+      "lat": 47.6509945,
+      "lng": -122.3431224,
+      "address": "3621 Stone Way N, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "3★",
+        "Take out",
+        "$20–30"
+      ]
+    },
+    {
+      "name": "Marin",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xaef2a4acf719dbfe",
+      "lat": 47.6069535,
+      "lng": -122.3340941,
+      "address": "1101 4th Ave, Seattle, WA 98101, United States",
+      "source": "url",
+      "tags": []
+    },
+    {
+      "name": "The Chicken Supply",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xabbaf0cbc3aad65b",
+      "lat": 47.6828643,
+      "lng": -122.3550019,
+      "address": "7410 Greenwood Ave N, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "4★",
+        "Dine in",
+        "Lunch",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Desi Pizza Kitchen",
+      "note": "The Indian pizzas here don't disappoint. They are flavorful and would satisfy the Indian palate. Would recommend this place. Customer service is good too!",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xb0f0657ca980d91c",
+      "lat": 47.6376812,
+      "lng": -122.3571756,
+      "address": "2115 Queen Anne Ave N, Seattle, WA 98109, United States",
+      "source": "url",
+      "tags": [
+        "4★",
+        "Dine in",
+        "Lunch",
+        "$20–30"
+      ]
+    },
+    {
+      "name": "Many Bennies",
+      "note": "It was okay. Got the sweet cream base with raspberry with lemon curd. Lemon curd was great and citrusy. The base was alright.",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xf73d28bcba10ccaa",
+      "lat": 47.6504304,
+      "lng": -122.3415999,
+      "address": "3535 Interlake Ave N, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "3★"
+      ]
+    },
+    {
+      "name": "Baskette",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x173befe2aa793814",
+      "lat": 47.6610953,
+      "lng": -122.35037,
+      "address": "4459 Fremont Ave N Ste 1, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "3★"
+      ]
+    },
+    {
+      "name": "Paper Cake Shop",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x843b6f70a2f4b5a3",
+      "lat": 47.6571599,
+      "lng": -122.3420468,
+      "address": "4106 Stone Way N #102, Seattle, WA 98103, United States",
+      "source": "url",
+      "tags": [
+        "3★",
+        "Dine in",
+        "$1–10"
+      ]
+    },
+    {
+      "name": "Wunderground Coffee + Cafe",
+      "note": "Coffee was strong and good. Music is too jarring and little too loud and would not recommend this place to do work from. It gave me a headache.",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xf7d507a9aaa538a9",
+      "lat": 47.6139077,
+      "lng": -122.317544,
+      "address": "1111 E Pike St Apt 111, Seattle, WA 98122, United States",
+      "source": "url",
+      "tags": [
+        "3★",
+        "Dine in",
+        "$10–20"
+      ]
+    },
+    {
+      "name": "Secret Congee",
+      "url": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0x5aac37b4cc76d34c",
+      "lat": 47.6743567,
+      "lng": -122.4066505,
+      "address": "6301 Seaview Ave NW, Seattle, WA 98107, United States",
+      "source": "url",
+      "tags": [
+        "3★",
+        "Dine in",
+        "Lunch",
+        "$20–30"
+      ]
+    }
+  ]
+}
