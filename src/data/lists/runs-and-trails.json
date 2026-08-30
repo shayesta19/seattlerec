@@ -1,0 +1,104 @@
+{
+  "name": "Runs and trails",
+  "slug": "runs-and-trails",
+  "curated": true,
+  "emoji": "🏃",
+  "order": 2,
+  "blurb": "Flat loops, wooded ravines, and 27 paved miles that cross the whole city.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Burke-Gilman Trail",
+      "note": "27 paved miles from Ballard through the U District and out to Bothell. The spine of running and cycling here.",
+      "lat": 47.6484083,
+      "lng": -122.3426643,
+      "address": "Burke-Gilman Trail, Fremont, Seattle, King County, Washington, 98013, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run"
+      ]
+    },
+    {
+      "name": "Discovery Park",
+      "note": "534 acres above the Sound. The 2.8-mile Loop Trail is the one, and the bluff opens onto the Olympics.",
+      "lat": 47.6618111,
+      "lng": -122.4219145,
+      "address": "Discovery Park, 3801, Magnolia, Seattle, King County, Washington, 98199, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run",
+        "view"
+      ]
+    },
+    {
+      "name": "Green Lake Park",
+      "note": "The default loop. 2.8 miles, flat, lit at night, and busy enough that running alone never feels like it.",
+      "lat": 47.6777459,
+      "lng": -122.3323665,
+      "address": "Green Lake Park, 7201, Green Lake, Seattle, King County, Washington, 98115, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run",
+        "water"
+      ]
+    },
+    {
+      "name": "Elliott Bay Trail",
+      "note": "Flat waterfront miles from Myrtle Edwards north. Container cranes on one side, ferries on the other.",
+      "lat": 47.5909304,
+      "lng": -122.3374717,
+      "address": "Portside Trail, Yesler Terrace, Seattle, King County, Washington, 98134, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run",
+        "water"
+      ]
+    },
+    {
+      "name": "Washington Park Arboretum",
+      "note": "230 acres of trees with soft paths through them. Go in April for the azaleas.",
+      "lat": 47.6351836,
+      "lng": -122.2964673,
+      "address": "Washington Park Arboretum, 2300, Madison Park, Seattle, King County, Washington, 98112, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run"
+      ]
+    },
+    {
+      "name": "Interlaken Park",
+      "note": "A wooded ravine between Capitol Hill and Montlake. Steep, quiet, and shaded the whole way.",
+      "lat": 47.6375137,
+      "lng": -122.310834,
+      "address": "Interlaken Park, Capitol Hill, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run"
+      ]
+    },
+    {
+      "name": "Myrtle Edwards Park",
+      "note": "The downtown-adjacent stretch of waterfront path. Where people run on a lunch break.",
+      "lat": 47.6185765,
+      "lng": -122.3602348,
+      "address": "Myrtle Edwards Park, Belltown, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run",
+        "water"
+      ]
+    },
+    {
+      "name": "Seward Park",
+      "note": "Loop the peninsula, then cut into the old-growth trails in the middle when you want dirt.",
+      "lat": 47.5512156,
+      "lng": -122.2657999,
+      "address": "Seward Park, Seattle, King County, Washington, 98118, United States",
+      "source": "nominatim",
+      "kinds": [
+        "run",
+        "water"
+      ]
+    }
+  ]
+}

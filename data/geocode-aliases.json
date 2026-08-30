@@ -2,5 +2,8 @@
   "_comment": "Place name -> a search string the geocoder can actually find. Only needed when a plain name search comes back empty, which the importer tells you about by name.",
   "Elm Coffee Roasters": "240 2nd Avenue South, Seattle, WA 98104",
   "Bateau": "1040 East Union Street, Seattle, WA 98122",
-  "The Museum of Flight": "Museum of Flight, 9404 East Marginal Way South, Seattle, WA"
+  "The Museum of Flight": "Museum of Flight, 9404 East Marginal Way South, Seattle, WA",
+  "Zoka Coffee Roaster & Tea Company": "Zoka Coffee, 2200 North 56th Street, Seattle, WA",
+  "Optimism Brewing Company": "1158 Broadway, Seattle, WA 98122",
+  "Ballard Farmers Market": "5345 Ballard Avenue Northwest, Seattle, WA 98107"
 }

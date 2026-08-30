@@ -1,0 +1,99 @@
+{
+  "name": "Coffee to sit in",
+  "slug": "coffee-to-sit-in",
+  "curated": true,
+  "emoji": "☕",
+  "order": 3,
+  "blurb": "Not coffee to take away. Coffee to stay three hours over.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Analog Coffee",
+      "note": "Capitol Hill. Corner windows, good light on a grey day, and people stay for hours.",
+      "lat": 47.6207259,
+      "lng": -122.325462,
+      "address": "Analog Coffee, 235, Summit Avenue East, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Victrola Coffee Roasters",
+      "note": "The long table is the point. Bring a laptop and settle in.",
+      "lat": 47.6109956,
+      "lng": -122.3386025,
+      "address": "Victrola Coffee Roasters, 300, Pine Street, Central Business District, Belltown, Seattle, King County, Washington, 98101, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Cafe Allegro",
+      "note": "Down an alley in the U District. The oldest espresso bar in Seattle and it still feels like a study hall.",
+      "lat": 47.6586927,
+      "lng": -122.312716,
+      "address": "Cafe Allegro, Northeast 42nd Street, Greek Row, University Heights, University District, Seattle, King County, Washington, 98195, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Elm Coffee Roasters",
+      "note": "Pioneer Square. Bright, quiet, high ceilings, and a pastry case worth the detour.",
+      "lat": 47.6001618,
+      "lng": -122.3313409,
+      "address": "Good Bar, 240, 2nd Avenue South, First Hill, Seattle, King County, Washington, 98104, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Milstead & Co.",
+      "note": "Fremont, by the water. They rotate roasters, so ask what is on today.",
+      "lat": 47.649393,
+      "lng": -122.3476154,
+      "address": "Milstead & Co., 754, North 34th Street, Fremont, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Zoka Coffee Roaster & Tea Company",
+      "note": "Green Lake. Big tables, lots of outlets, and the loop is a five-minute walk away.",
+      "lat": 47.6688114,
+      "lng": -122.332867,
+      "address": "Zoka Coffee - Greenlake, 2200, North 56th Street, Tangletown, Wallingford, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Fuel Coffee",
+      "note": "Small neighbourhood rooms in Wallingford and Montlake. The kind of place you become a regular at.",
+      "lat": 47.624752,
+      "lng": -122.307136,
+      "address": "Fuel, 610, 19th Avenue East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98112, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    },
+    {
+      "name": "Herkimer Coffee",
+      "note": "Phinney Ridge and Green Lake. Unfussy, consistent, and full of people reading.",
+      "lat": 47.6141153,
+      "lng": -122.3423034,
+      "address": "Herkimer Coffee, 2121, 4th Avenue, Belltown, Seattle, King County, Washington, 98121, United States",
+      "source": "nominatim",
+      "kinds": [
+        "coffee"
+      ]
+    }
+  ]
+}

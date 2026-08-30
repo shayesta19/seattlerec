@@ -49,8 +49,9 @@ const shortAddress = (a?: string) =>
         {list.blurb && <p class="lede">{list.blurb}</p>}
         <p class="meta">
           {places.length} places
-          {list.updated && <> · saved list, last imported {list.updated}</>}
-          {list.sample && <> · <span class="badge">sample data</span></>}
+          {list.curated
+            ? <> · <span class="badge">hand-picked</span></>
+            : list.updated && <> · saved list, last imported {list.updated}</>}
         </p>
       </div>
     </header>
@@ -151,8 +152,10 @@ const shortAddress = (a?: string) =>
           )
       );
 
+      // Extra padding top-left so a pin never lands under the zoom control.
       map.fitBounds(L.latLngBounds(pins.map((p) => [p.lat, p.lng])), {
-        padding: [48, 48],
+        paddingTopLeft: [72, 66],
+        paddingBottomRight: [48, 48],
         maxZoom: 15,
       });
 

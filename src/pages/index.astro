@@ -30,6 +30,15 @@ const hoods = (await getCollection('neighborhoods')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
 
+// The point of the picker is that somebody who has just moved here gets an
+// answer before they have to read anything. Curated lists only -- the personal
+// ones are a record of where somebody went, not an answer to "where do I run".
+const picks = (await getCollection('lists'))
+  .filter((l) => l.data.curated && !l.data.hidden)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const elsewhere = (await import('../data/from-elsewhere.json')).default;
+
 const pad = (n: number) => String(n).padStart(2, '0');
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 ---
@@ -59,6 +68,54 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
       </p>
     </div>
   </header>
+
+  <section class="picker" id="what-are-you-after">
+    <div class="wrap-wide">
+      <h2 class="picker-q">What are you after?</h2>
+      <p class="picker-sub">
+        Pick one and you get a map and a shortlist. No account, no quiz.
+      </p>
+      <div class="picker-grid">
+        {picks.map((l) => (
+          <a class="pick" href={`/lists/${l.data.slug}/`}>
+            <span class="pick-emoji" aria-hidden="true">{l.data.emoji}</span>
+            <span class="pick-name">{l.data.name}</span>
+            {l.data.blurb && <span class="pick-why">{l.data.blurb}</span>}
+            <span class="pick-count">{l.data.places.length} places</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="elsewhere" id="from-elsewhere">
+    <div class="wrap-wide">
+      <div class="section-head">
+        <p class="kicker">You already know what you like</p>
+        <h2>Coming from somewhere else</h2>
+      </div>
+      <p class="elsewhere-lede">
+        Nobody moves to a city wanting <em>a city</em>. You want the specific
+        thing you used to do on a Thursday. Here is where that thing lives now.
+      </p>
+
+      <div class="swap-grid">
+        {elsewhere.map((place) => (
+          <div class="swap-city">
+            <h3>{place.city}</h3>
+            {place.swaps.map((s) => (
+              <a class="swap" href={s.href}>
+                <span class="swap-from">{s.from}</span>
+                <span class="swap-arrow" aria-hidden="true">↓</span>
+                <span class="swap-to">{s.to}</span>
+                <span class="swap-why">{s.why}</span>
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <nav class="contents">
     <div class="wrap">

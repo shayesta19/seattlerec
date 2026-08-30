@@ -25,7 +25,13 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const IN_DIR = path.join(ROOT, 'data', 'takeout');
+// Two kinds of list, same pipeline. `takeout` is whatever Google exported --
+// a personal history. `curated` is hand-written: the answers to "where do I
+// run", "where is the water", which no Maps export is ever going to contain.
+const SOURCES = [
+  { dir: path.join(ROOT, 'data', 'takeout'), curated: false },
+  { dir: path.join(ROOT, 'data', 'curated'), curated: true },
+];
 const OUT_DIR = path.join(ROOT, 'src', 'data', 'lists');
 const CACHE_FILE = path.join(ROOT, 'data', 'geocode-cache.json');
 const ALIAS_FILE = path.join(ROOT, 'data', 'geocode-aliases.json');
@@ -73,6 +79,9 @@ function columnMap(header) {
     if (/^(title|name)$/.test(k)) idx.title = i;
     else if (/^(note|comment|description)$/.test(k)) idx.note = i;
     else if (/^(url|link)$/.test(k)) idx.url = i;
+    else if (/^(lat|latitude)$/.test(k)) idx.lat = i;
+    else if (/^(lng|lon|long|longitude)$/.test(k)) idx.lng = i;
+    else if (/^(kind|kinds|category|categories)$/.test(k)) idx.kind = i;
   });
   return idx;
 }
@@ -182,14 +191,15 @@ async function existing(slug) {
 /* -------------------------------- main -------------------------------- */
 
 async function main() {
-  if (!existsSync(IN_DIR)) {
-    console.error('No input directory: ' + IN_DIR);
-    process.exit(1);
+  const jobs = [];
+  for (const src of SOURCES) {
+    if (!existsSync(src.dir)) continue;
+    const files = (await readdir(src.dir)).filter((f) => f.toLowerCase().endsWith('.csv'));
+    for (const file of files) jobs.push({ ...src, file });
   }
 
-  const files = (await readdir(IN_DIR)).filter((f) => f.toLowerCase().endsWith('.csv'));
-  if (!files.length) {
-    console.log('Nothing to import. Drop your Takeout "Saved" CSVs into data/takeout/');
+  if (!jobs.length) {
+    console.log('Nothing to import. Takeout CSVs go in data/takeout/, hand-written lists in data/curated/.');
     return;
   }
 
@@ -200,10 +210,11 @@ async function main() {
   let geocoded = 0;
   let unplaced = 0;
 
-  for (const file of files) {
+  for (const job of jobs) {
+    const { file, dir, curated } = job;
     const listName = path.basename(file, '.csv').replace(/[_-]+/g, ' ').trim();
     const slug = slugify(listName);
-    const rows = parseCsv(await readFile(path.join(IN_DIR, file), 'utf8'));
+    const rows = parseCsv(await readFile(path.join(dir, file), 'utf8'));
     if (rows.length < 2) { console.log('- ' + file + ': empty, skipped'); continue; }
 
     const idx = columnMap(rows[0]);
@@ -224,8 +235,19 @@ async function main() {
 
       const note = (row[idx.note] || '').trim();
       const url = (row[idx.url] || '').trim();
+      const kinds = (row[idx.kind] || '')
+        .split(/[;|]/)
+        .map((k) => k.trim())
+        .filter(Boolean);
 
-      let point = coordsFromUrl(url);
+      // Coordinates given outright beat both the URL and the geocoder.
+      const csvLat = parseFloat(row[idx.lat]);
+      const csvLng = parseFloat(row[idx.lng]);
+      let point = Number.isFinite(csvLat) && Number.isFinite(csvLng)
+        ? { lat: csvLat, lng: csvLng, from: 'url' }
+        : null;
+
+      if (!point) point = coordsFromUrl(url);
       if (!point) {
         point = await geocode(aliases[name] || name + ', ' + BIAS);
         if (point) geocoded++;
@@ -246,6 +268,7 @@ async function main() {
         lng: point ? point.lng : undefined,
         address: point ? point.address : undefined,
         source: point ? point.from : undefined,
+        kinds: kinds.length ? kinds : undefined,
       };
 
       const old = prevPlaces.get(name);
@@ -255,7 +278,13 @@ async function main() {
       totalPlaces++;
     }
 
-    const out = { name: listName, slug, places, updated: new Date().toISOString().slice(0, 10) };
+    const out = {
+      name: listName,
+      slug,
+      curated,
+      places,
+      updated: new Date().toISOString().slice(0, 10),
+    };
     for (const k of CURATED_LIST) if (prev && prev[k] !== undefined) out[k] = prev[k];
 
     if (DRY) console.log('  (dry run) would write ' + places.length + ' places');
@@ -265,7 +294,7 @@ async function main() {
   if (!DRY) await writeFile(CACHE_FILE, JSON.stringify(cache, null, 2) + '\n');
 
   console.log(
-    '\n' + totalPlaces + ' places across ' + files.length + ' lists (' +
+    '\n' + totalPlaces + ' places across ' + jobs.length + ' lists (' +
     geocoded + ' geocoded, ' + unplaced + ' still missing coordinates).'
   );
 }

@@ -145,5 +145,158 @@
     "lng": -122.2964955,
     "address": "Museum of Flight, 9404, East Marginal Way South, Seattle, King County, Washington, 98108, United States",
     "from": "nominatim"
+  },
+  "Zoka Coffee Roaster & Tea Company, Seattle, Washington, USA": null,
+  "Fuel Coffee, Seattle, Washington, USA": {
+    "lat": 47.624752,
+    "lng": -122.307136,
+    "address": "Fuel, 610, 19th Avenue East, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98112, United States",
+    "from": "nominatim"
+  },
+  "Herkimer Coffee, Seattle, Washington, USA": {
+    "lat": 47.6141153,
+    "lng": -122.3423034,
+    "address": "Herkimer Coffee, 2121, 4th Avenue, Belltown, Seattle, King County, Washington, 98121, United States",
+    "from": "nominatim"
+  },
+  "Burke-Gilman Trail, Seattle, Washington, USA": {
+    "lat": 47.6484083,
+    "lng": -122.3426643,
+    "address": "Burke-Gilman Trail, Fremont, Seattle, King County, Washington, 98013, United States",
+    "from": "nominatim"
+  },
+  "Green Lake Park, Seattle, Washington, USA": {
+    "lat": 47.6777459,
+    "lng": -122.3323665,
+    "address": "Green Lake Park, 7201, Green Lake, Seattle, King County, Washington, 98115, United States",
+    "from": "nominatim"
+  },
+  "Elliott Bay Trail, Seattle, Washington, USA": {
+    "lat": 47.5909304,
+    "lng": -122.3374717,
+    "address": "Portside Trail, Yesler Terrace, Seattle, King County, Washington, 98134, United States",
+    "from": "nominatim"
+  },
+  "Interlaken Park, Seattle, Washington, USA": {
+    "lat": 47.6375137,
+    "lng": -122.310834,
+    "address": "Interlaken Park, Capitol Hill, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Myrtle Edwards Park, Seattle, Washington, USA": {
+    "lat": 47.6185765,
+    "lng": -122.3602348,
+    "address": "Myrtle Edwards Park, Belltown, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Seward Park, Seattle, Washington, USA": {
+    "lat": 47.5512156,
+    "lng": -122.2657999,
+    "address": "Seward Park, Seattle, King County, Washington, 98118, United States",
+    "from": "nominatim"
+  },
+  "Volunteer Park, Seattle, Washington, USA": {
+    "lat": 47.6295663,
+    "lng": -122.3156138,
+    "address": "Volunteer Park, 1247, Capitol Hill, Seattle, King County, Washington, 98112, United States",
+    "from": "nominatim"
+  },
+  "Cal Anderson Park, Seattle, Washington, USA": {
+    "lat": 47.6170377,
+    "lng": -122.3191692,
+    "address": "Cal Anderson Park, 1635, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "Optimism Brewing Company, Seattle, Washington, USA": null,
+  "Ballard Farmers Market, Seattle, Washington, USA": null,
+  "Waterfall Garden Park, Seattle, Washington, USA": {
+    "lat": 47.6002087,
+    "lng": -122.3319734,
+    "address": "Waterfall Garden, First Hill, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Hugo House, Seattle, Washington, USA": {
+    "lat": 47.6161894,
+    "lng": -122.317993,
+    "address": "Hugo House, 1634, 11th Avenue, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "Kerry Park, Seattle, Washington, USA": {
+    "lat": 47.6293641,
+    "lng": -122.3598958,
+    "address": "Kerry Park, 211, Queen Anne, Seattle, King County, Washington, 98119, United States",
+    "from": "nominatim"
+  },
+  "Sky View Observatory, Seattle, Washington, USA": {
+    "lat": 47.6045392,
+    "lng": -122.3308714,
+    "address": "Sky View Observatory, 701, 5th Avenue, Central Business District, First Hill, Seattle, King County, Washington, 98104, United States",
+    "from": "nominatim"
+  },
+  "Smith Tower Observatory, Seattle, Washington, USA": {
+    "lat": 47.6020211,
+    "lng": -122.331868,
+    "address": "Smith Tower Observatory, 506, 2nd Avenue, West Edge, First Hill, Seattle, King County, Washington, 98104, United States",
+    "from": "nominatim"
+  },
+  "Dr. Jose Rizal Park, Seattle, Washington, USA": {
+    "lat": 47.5926322,
+    "lng": -122.318534,
+    "address": "Dr. Jose Rizal Park, 1007, Yesler Terrace, Seattle, King County, Washington, 98144, United States",
+    "from": "nominatim"
+  },
+  "Hamilton Viewpoint Park, Seattle, Washington, USA": {
+    "lat": 47.5915178,
+    "lng": -122.3837938,
+    "address": "Hamilton Viewpoint Park, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Volunteer Park Water Tower, Seattle, Washington, USA": {
+    "lat": 47.6290221,
+    "lng": -122.314573,
+    "address": "Volunteer Park Water Tower, Volunteer Park Road, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+    "from": "nominatim"
+  },
+  "Alki Beach Park, Seattle, Washington, USA": {
+    "lat": 47.5866855,
+    "lng": -122.397641,
+    "address": "Alki Beach Park, West Seattle, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Lake Union Park, Seattle, Washington, USA": {
+    "lat": 47.6270222,
+    "lng": -122.3371563,
+    "address": "Lake Union Park, 860, Cascade, Belltown, Seattle, King County, Washington, 98109, United States",
+    "from": "nominatim"
+  },
+  "Madison Park Beach, Seattle, Washington, USA": {
+    "lat": 47.6356282,
+    "lng": -122.2765242,
+    "address": "Madison Park Beach, Washington Park, Madison Park, Seattle, King County, Washington, United States",
+    "from": "nominatim"
+  },
+  "Warren G. Magnuson Park, Seattle, Washington, USA": {
+    "lat": 47.6795175,
+    "lng": -122.2544428,
+    "address": "Warren G. Magnuson Park, 7400, Sand Point, Seattle, King County, Washington, 98115, United States",
+    "from": "nominatim"
+  },
+  "Zoka Coffee, 2200 North 56th Street, Seattle, WA": {
+    "lat": 47.6688114,
+    "lng": -122.332867,
+    "address": "Zoka Coffee - Greenlake, 2200, North 56th Street, Tangletown, Wallingford, Seattle, King County, Washington, 98103, United States",
+    "from": "nominatim"
+  },
+  "1158 Broadway, Seattle, WA 98122": {
+    "lat": 47.6116672,
+    "lng": -122.3206394,
+    "address": "1158, Broadway, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+    "from": "nominatim"
+  },
+  "5345 Ballard Avenue Northwest, Seattle, WA 98107": {
+    "lat": 47.6673362,
+    "lng": -122.384509,
+    "address": "5345, Ballard Avenue Northwest, Ballard, Seattle, King County, Washington, 98107, United States",
+    "from": "nominatim"
   }
 }

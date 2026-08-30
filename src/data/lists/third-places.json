@@ -1,0 +1,100 @@
+{
+  "name": "Third places",
+  "slug": "third-places",
+  "curated": true,
+  "emoji": "🪑",
+  "order": 4,
+  "blurb": "Somewhere that is not work and not home, where nobody asks you to leave.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Seattle Central Library",
+      "note": "Rem Koolhaas built it. Take the escalator to the Books Spiral, look up, and stay all afternoon. Free.",
+      "lat": 47.6067142,
+      "lng": -122.3326983,
+      "address": "The Seattle Public Library - Central Library, 1000, 4th Avenue, Central Business District, First Hill, Seattle, King County, Washington, 98104, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Elliott Bay Book Company",
+      "note": "Capitol Hill. Wooden floors, a cafe at the back, and no one will hurry you.",
+      "lat": 47.6146657,
+      "lng": -122.319677,
+      "address": "Elliott Bay Book Company, 1521, 10th Avenue, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Volunteer Park",
+      "note": "The Conservatory, the water tower, the art museum and a lot of grass. Capitol Hill's front garden.",
+      "lat": 47.6295663,
+      "lng": -122.3156138,
+      "address": "Volunteer Park, 1247, Capitol Hill, Seattle, King County, Washington, 98112, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third",
+        "view"
+      ]
+    },
+    {
+      "name": "Cal Anderson Park",
+      "note": "The one everyone ends up at. Shade, a reflecting pool, and a permanent low-grade party in summer.",
+      "lat": 47.6170377,
+      "lng": -122.3191692,
+      "address": "Cal Anderson Park, 1635, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Optimism Brewing Company",
+      "note": "A hall the size of an aircraft hangar with long communal tables. Nobody minds if you nurse one drink.",
+      "lat": 47.6116672,
+      "lng": -122.3206394,
+      "address": "1158, Broadway, Madison Valley, First Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Ballard Farmers Market",
+      "note": "Sundays, year round, rain included. The most reliable way to spend a morning around other people.",
+      "lat": 47.6673362,
+      "lng": -122.384509,
+      "address": "5345, Ballard Avenue Northwest, Ballard, Seattle, King County, Washington, 98107, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Waterfall Garden Park",
+      "note": "A hidden courtyard in Pioneer Square with a 22-foot waterfall. Twenty seconds off the street and silent.",
+      "lat": 47.6002087,
+      "lng": -122.3319734,
+      "address": "Waterfall Garden, First Hill, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    },
+    {
+      "name": "Hugo House",
+      "note": "A writing centre with a cafe and a reading calendar. Somewhere to go alone on purpose.",
+      "lat": 47.6161894,
+      "lng": -122.317993,
+      "address": "Hugo House, 1634, 11th Avenue, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98122, United States",
+      "source": "nominatim",
+      "kinds": [
+        "third"
+      ]
+    }
+  ]
+}

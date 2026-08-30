@@ -494,3 +494,90 @@ a:hover { color: var(--spruce); }
 @media (max-width: 640px) {
   .hero-photo { min-height: 78vh; }
 }
+
+/* ====================== the picker ======================
+   Sits directly under the hero because the whole promise is that somebody who
+   just moved here gets an answer before they have to read anything. */
+
+.picker { padding: clamp(48px, 8vh, 80px) 0 clamp(40px, 6vh, 64px); border-bottom: 1px solid var(--line-soft); }
+.picker-q {
+  font-family: var(--serif); font-weight: 400; letter-spacing: -.02em;
+  font-size: clamp(28px, 4.4vw, 42px); line-height: 1.1; margin: 0 0 10px;
+}
+.picker-sub { margin: 0 0 32px; color: var(--ink-faint); font-size: 15px; }
+
+.picker-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+}
+.pick {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 20px 20px 18px; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--card);
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.pick:hover {
+  transform: translateY(-2px);
+  border-color: rgba(28, 107, 77, .4);
+  box-shadow: 0 10px 26px rgba(16, 31, 26, .09);
+}
+@media (prefers-reduced-motion: reduce) { .pick:hover { transform: none; } }
+.pick:focus-visible { outline: 2px solid var(--spruce); outline-offset: 3px; }
+
+.pick-emoji { font-size: 24px; line-height: 1; }
+.pick-name {
+  font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--ink);
+}
+.pick-why { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+.pick-count {
+  margin-top: 6px; font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--spruce);
+}
+
+/* ====================== coming from elsewhere ====================== */
+
+.elsewhere { padding: clamp(56px, 9vh, 96px) 0; border-bottom: 1px solid var(--line-soft); background: var(--paper-warm); }
+.elsewhere-lede {
+  max-width: 46ch; margin: 0 0 36px;
+  font-size: 17px; line-height: 1.6; color: var(--ink-soft);
+}
+.elsewhere-lede em { color: var(--ink); font-style: italic; }
+
+.swap-grid {
+  display: grid; gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
+}
+.swap-city > h3 {
+  margin: 0 0 12px; font-family: var(--sans);
+  font-size: 11px; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+.swap {
+  display: block; padding: 16px 18px; margin-bottom: 10px; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card);
+  transition: border-color .16s ease;
+}
+.swap:hover { border-color: rgba(28, 107, 77, .42); }
+.swap:focus-visible { outline: 2px solid var(--spruce); outline-offset: 3px; }
+
+.swap-from {
+  display: block; font-size: 14px; color: var(--ink-faint);
+  text-decoration: line-through; text-decoration-color: var(--line);
+}
+.swap-arrow { display: block; margin: 4px 0; font-size: 13px; color: var(--salmon); }
+.swap-to {
+  display: block; font-family: var(--serif); font-size: 19px;
+  line-height: 1.25; color: var(--ink);
+}
+.swap-why {
+  display: block; margin-top: 7px;
+  font-size: 13.5px; line-height: 1.55; color: var(--ink-soft);
+}
+
+/* Grouped board */
+.board-group { margin-bottom: 56px; }
+.board-group .section-head { margin-bottom: 22px; }
+.board-group .section-head h2 { margin-bottom: 4px; }
+.board-group .section-head .kicker { margin: 0; }

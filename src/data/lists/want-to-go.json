@@ -1,8 +1,9 @@
 {
   "name": "Want to go",
   "slug": "want-to-go",
+  "curated": false,
   "emoji": "📌",
-  "order": 2,
+  "order": 11,
   "blurb": "Saved, bookmarked, not yet been. The running shortlist.",
   "updated": "2026-08-30",
   "places": [

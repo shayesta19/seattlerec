@@ -1,0 +1,81 @@
+[
+  {
+    "city": "Boston",
+    "swaps": [
+      {
+        "from": "The Charles River Esplanade",
+        "to": "The Cheshiahud Loop, Lake Union",
+        "why": "Six miles around the water with downtown on one side and houseboats on the other. If what you actually miss is the crowd, Green Lake is the one — 2.8 flat miles and never empty.",
+        "href": "/lists/water/"
+      },
+      {
+        "from": "Boston Common and the Public Garden",
+        "to": "Volunteer Park",
+        "why": "A conservatory, a climbable water tower, an art museum, and enough grass to lie on. Capitol Hill treats it as a front garden.",
+        "href": "/lists/third-places/"
+      },
+      {
+        "from": "Newbury Street",
+        "to": "Ballard Avenue",
+        "why": "Low brick, independent shops, and a farmers market down the middle of it every Sunday of the year.",
+        "href": "/lists/third-places/"
+      }
+    ]
+  },
+  {
+    "city": "New York",
+    "swaps": [
+      {
+        "from": "Central Park",
+        "to": "Discovery Park",
+        "why": "Bigger, wilder, and it ends at a lighthouse on a bluff over the Sound. Green Lake is the social one; this is the one you go to be alone.",
+        "href": "/lists/runs-and-trails/"
+      },
+      {
+        "from": "The High Line",
+        "to": "Olympic Sculpture Park into the Elliott Bay Trail",
+        "why": "Art on a slope down to the water, then flat waterfront miles north past the container cranes.",
+        "href": "/lists/runs-and-trails/"
+      }
+    ]
+  },
+  {
+    "city": "San Francisco",
+    "swaps": [
+      {
+        "from": "Dolores Park",
+        "to": "Cal Anderson Park",
+        "why": "The same sit-on-a-slope-and-watch-everyone energy, with meaningfully less sun and a reflecting pool.",
+        "href": "/lists/third-places/"
+      },
+      {
+        "from": "Golden Gate Park",
+        "to": "Washington Park Arboretum",
+        "why": "230 acres of trees with soft paths through them, running down to the water at Foster Island.",
+        "href": "/lists/runs-and-trails/"
+      }
+    ]
+  },
+  {
+    "city": "Chicago",
+    "swaps": [
+      {
+        "from": "The Lakefront Trail",
+        "to": "The Burke-Gilman Trail",
+        "why": "27 paved miles, though it threads through neighbourhoods rather than running along a single shore. Ballard to Bothell without touching a road.",
+        "href": "/lists/runs-and-trails/"
+      }
+    ]
+  },
+  {
+    "city": "Los Angeles",
+    "swaps": [
+      {
+        "from": "The view from Griffith Observatory",
+        "to": "Kerry Park",
+        "why": "Much smaller, much closer to town, and it is Rainier behind the skyline instead of a sign on a hill.",
+        "href": "/lists/views/"
+      }
+    ]
+  }
+]

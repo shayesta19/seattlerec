@@ -6,7 +6,23 @@ const lists = (await getCollection('lists'))
   .filter((l) => !l.data.hidden)
   .sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
 
-const anySample = lists.some((l) => l.data.sample);
+// Two different promises, so they do not sit in one undifferentiated grid.
+// The curated lists answer a question; the personal ones are a record of where
+// somebody actually went, which is a different and more fallible thing.
+const groups = [
+  {
+    key: 'curated',
+    title: 'Start here',
+    sub: 'Answers to the question you actually have.',
+    lists: lists.filter((l) => l.data.curated),
+  },
+  {
+    key: 'personal',
+    title: 'From my own maps',
+    sub: 'Saved and reviewed over a few years of living here. Honest, not comprehensive.',
+    lists: lists.filter((l) => !l.data.curated),
+  },
+].filter((g) => g.lists.length > 0);
 
 // Each tile carries a little constellation of its own pins: the list's places
 // normalised into the tile's box, so a tightly clustered list reads as tight
@@ -42,51 +58,48 @@ const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
       <p class="eyebrow"><a href="/">A local’s guide to Seattle</a> &nbsp;/&nbsp; the lists</p>
       <h1>The <em>lists</em></h1>
       <p class="lede">
-        {totalPlaces} places across {lists.length} lists, pulled straight out of
-        a real Google Maps account. Open one and you get the map and the reasons
-        together.
+        {totalPlaces} places across {lists.length} lists. Open one and you get
+        the map and the reasons together.
       </p>
     </div>
   </header>
 
-  {anySample && (
-    <div class="wrap-wide">
-      <p class="sample-note">
-        <strong>Sample data.</strong> These are placeholder lists so the board is
-        real to click through. Run <code>npm run import:lists</code> against a
-        Google Takeout export to replace them with the actual saved lists.
-      </p>
-    </div>
-  )}
-
   <main class="board-wrap">
     <div class="wrap-wide">
-      <div class="board">
-        {lists.map((l) => {
-          const pts = constellation(l.data.places);
-          const preview = l.data.places.slice(0, 3).map((p) => p.name);
-          const more = l.data.places.length - preview.length;
-          return (
-            <a class="tile" href={`/lists/${l.data.slug}/`}>
-              <svg class="tile-map" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
-                {pts.map((pt) => <circle cx={pt.x} cy={pt.y} r="2.6" />)}
-              </svg>
-              <div class="tile-body">
-                <span class="tile-emoji" aria-hidden="true">{l.data.emoji ?? '📍'}</span>
-                <h2>{l.data.name}</h2>
-                {l.data.blurb && <p class="tile-blurb">{l.data.blurb}</p>}
-                <p class="tile-preview">
-                  {preview.join(' · ')}{more > 0 && <span class="more"> · +{more} more</span>}
-                </p>
-              </div>
-              <div class="tile-foot">
-                <span class="count">{l.data.places.length} places</span>
-                <span class="go" aria-hidden="true">Open map →</span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
+      {groups.map((g) => (
+        <section class="board-group">
+          <div class="section-head">
+            <h2>{g.title}</h2>
+            <p class="kicker">{g.sub}</p>
+          </div>
+          <div class="board">
+            {g.lists.map((l) => {
+              const pts = constellation(l.data.places);
+              const preview = l.data.places.slice(0, 3).map((p) => p.name);
+              const more = l.data.places.length - preview.length;
+              return (
+                <a class="tile" href={`/lists/${l.data.slug}/`}>
+                  <svg class="tile-map" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
+                    {pts.map((pt) => <circle cx={pt.x} cy={pt.y} r="2.6" />)}
+                  </svg>
+                  <div class="tile-body">
+                    <span class="tile-emoji" aria-hidden="true">{l.data.emoji ?? '📍'}</span>
+                    <h2>{l.data.name}</h2>
+                    {l.data.blurb && <p class="tile-blurb">{l.data.blurb}</p>}
+                    <p class="tile-preview">
+                      {preview.join(' · ')}{more > 0 && <span class="more"> · +{more} more</span>}
+                    </p>
+                  </div>
+                  <div class="tile-foot">
+                    <span class="count">{l.data.places.length} places</span>
+                    <span class="go" aria-hidden="true">Open map →</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      ))}
     </div>
   </main>
 

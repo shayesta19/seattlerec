@@ -165,3 +165,55 @@ Web Contents* enabled (`chrome://flags/#enable-force-dark`), which force-darkens
 the scene at paint time — the warm colours will not look warm in screenshots.
 `prefers-color-scheme` reports light and `--sc-glitter` resolves to `#ffcf94`,
 so the palette is fine; the browser is lying about it.
+
+## The picker and the translator (30 Aug 2026)
+
+The product goal, in Shaye's words: someone new to the city should *instantly*
+know how to navigate it. The story behind it — moving from Boston, missing the
+Charles, not knowing for months that Lake Union and Green Lake were the answer —
+is the whole brief. Two features come out of it.
+
+### 1. "What are you after?"
+Sits directly under the hero, above the contents. Five curated lists, one click
+to a map and a shortlist. No account, no quiz, no chat box to compose a question
+into. The fastest possible path from arriving to having an answer.
+
+### 2. "Coming from somewhere else"
+The translator. Familiar thing → the Seattle version, with a line on how it
+differs. Boston, New York, San Francisco, Chicago, LA. Data in
+`src/data/from-elsewhere.json`; add a city by adding an object.
+
+This is the differentiator. Every city guide lists parks. None of them tell a
+transplant *which* park is their park.
+
+### Why there is now a curated layer
+
+The personal lists cannot answer these questions. Of the 36 places in the
+Takeout export, **33 are food and drink** — two parks and a park cafe is the
+entire outdoors coverage. No trails, no viewpoints, no water.
+
+So `data/curated/*.csv` was added, running through the same importer:
+
+| | `data/takeout/` | `data/curated/` |
+|---|---|---|
+| Source | Google export | Hand-written |
+| Flag | `curated: false` | `curated: true` |
+| Promise | where someone went | the answer to a question |
+
+Both geocode through Nominatim and land in `src/data/lists/`. The CSVs take
+optional `Lat`, `Lng` and `Kind` columns — `Kind` is semicolon-separated
+(`water;run`) and lands in `place.kinds`, ready for cross-list filtering later.
+
+The board at `/lists` groups them: **Start here** (curated) and **From my own
+maps** (personal). Keeping them visibly separate matters — one is an
+endorsement, the other is a record, and they should not be read as the same
+kind of claim.
+
+### Next on this thread
+- `kinds` is populated but nothing filters on it yet. A `/lists?kind=water`
+  view, or chips on the board, is the obvious follow-on.
+- Free-text search over all 76 places is probably worth more than an AI chat
+  box, and costs nothing to run.
+- If AI Q&A does get built, it should sit *on top of* this data, not replace
+  the picker. The picker answers in one click; a chat box asks the user to
+  compose a sentence first.

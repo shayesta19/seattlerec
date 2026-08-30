@@ -1,0 +1,103 @@
+{
+  "name": "Water",
+  "slug": "water",
+  "curated": true,
+  "emoji": "🌊",
+  "order": 1,
+  "blurb": "You are looking for a Charles River. There are three, and they are all better.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Green Lake Park",
+      "note": "2.8 miles around, flat, and always full of people. If you are missing the Charles on a Saturday, start here.",
+      "lat": 47.6777459,
+      "lng": -122.3323665,
+      "address": "Green Lake Park, 7201, Green Lake, Seattle, King County, Washington, 98115, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water",
+        "run"
+      ]
+    },
+    {
+      "name": "Lake Union Park",
+      "note": "South end of Lake Union. The Cheshiahud Loop runs six miles around the whole lake from here.",
+      "lat": 47.6270222,
+      "lng": -122.3371563,
+      "address": "Lake Union Park, 860, Cascade, Belltown, Seattle, King County, Washington, 98109, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water",
+        "run"
+      ]
+    },
+    {
+      "name": "Gas Works Park",
+      "note": "The north shore, looking back at downtown across the water. Best skyline in the city and nobody argues.",
+      "lat": 47.6455976,
+      "lng": -122.3349284,
+      "address": "Gas Works Park, 2101, Fremont, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water",
+        "view"
+      ]
+    },
+    {
+      "name": "Alki Beach Park",
+      "note": "Two and a half miles of actual beach with the skyline across the bay. Feels like a different city.",
+      "lat": 47.5866855,
+      "lng": -122.397641,
+      "address": "Alki Beach Park, West Seattle, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water"
+      ]
+    },
+    {
+      "name": "Golden Gardens Park",
+      "note": "Ballard. Sand, driftwood, legal beach fires, and the Olympics going pink at sunset.",
+      "lat": 47.6921997,
+      "lng": -122.4029796,
+      "address": "Golden Gardens Park, 8498, Ballard, Seattle, King County, Washington, 98117, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water"
+      ]
+    },
+    {
+      "name": "Seward Park",
+      "note": "A 300-acre peninsula in Lake Washington with a 2.4-mile loop and old-growth forest in the middle.",
+      "lat": 47.5512156,
+      "lng": -122.2657999,
+      "address": "Seward Park, Seattle, King County, Washington, 98118, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water",
+        "run"
+      ]
+    },
+    {
+      "name": "Madison Park Beach",
+      "note": "Small, calm, residential. Swimming raft in summer and far fewer people than Green Lake.",
+      "lat": 47.6356282,
+      "lng": -122.2765242,
+      "address": "Madison Park Beach, Washington Park, Madison Park, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water"
+      ]
+    },
+    {
+      "name": "Warren G. Magnuson Park",
+      "note": "Former naval air station on Lake Washington. Big open sky, an off-leash beach for dogs.",
+      "lat": 47.6795175,
+      "lng": -122.2544428,
+      "address": "Warren G. Magnuson Park, 7400, Sand Point, Seattle, King County, Washington, 98115, United States",
+      "source": "nominatim",
+      "kinds": [
+        "water"
+      ]
+    }
+  ]
+}

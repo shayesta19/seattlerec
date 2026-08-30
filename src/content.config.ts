@@ -39,6 +39,7 @@ const place = z.object({
   blurb: z.string().optional(),
   cover: z.string().optional(),
   tags: z.array(z.string()).optional(),
+  kinds: z.array(z.string()).optional(),
 });
 
 const lists = defineCollection({
@@ -51,7 +52,7 @@ const lists = defineCollection({
     cover: z.string().optional(),
     order: z.number().default(99),
     hidden: z.boolean().default(false),
-    sample: z.boolean().default(false),
+    curated: z.boolean().default(false),
     updated: z.string().optional(),
     places: z.array(place),
   }),

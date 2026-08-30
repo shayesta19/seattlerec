@@ -1,0 +1,102 @@
+{
+  "name": "Views",
+  "slug": "views",
+  "curated": true,
+  "emoji": "⛰️",
+  "order": 5,
+  "blurb": "Where the city finally makes sense as a shape. Go at dusk.",
+  "updated": "2026-08-30",
+  "places": [
+    {
+      "name": "Kerry Park",
+      "note": "The postcard. Skyline, Rainier behind it, Sound to the right. Tiny park, go at dusk.",
+      "lat": 47.6293641,
+      "lng": -122.3598958,
+      "address": "Kerry Park, 211, Queen Anne, Seattle, King County, Washington, 98119, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view"
+      ]
+    },
+    {
+      "name": "Gas Works Park",
+      "note": "Climb the mound. Downtown across Lake Union with seaplanes landing in front of it.",
+      "lat": 47.6455976,
+      "lng": -122.3349284,
+      "address": "Gas Works Park, 2101, Fremont, Seattle, King County, Washington, 98103, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view",
+        "water"
+      ]
+    },
+    {
+      "name": "Sky View Observatory",
+      "note": "73rd floor of Columbia Center, the tallest public view in the city. Costs money, worth it once.",
+      "lat": 47.6045392,
+      "lng": -122.3308714,
+      "address": "Sky View Observatory, 701, 5th Avenue, Central Business District, First Hill, Seattle, King County, Washington, 98104, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view"
+      ]
+    },
+    {
+      "name": "Smith Tower Observatory",
+      "note": "1914 open-air deck with a speakeasy attached. Lower than the Columbia Center and far more charming.",
+      "lat": 47.6020211,
+      "lng": -122.331868,
+      "address": "Smith Tower Observatory, 506, 2nd Avenue, West Edge, First Hill, Seattle, King County, Washington, 98104, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view"
+      ]
+    },
+    {
+      "name": "Dr. Jose Rizal Park",
+      "note": "Beacon Hill. The skyline framed by the freeway, and almost never crowded.",
+      "lat": 47.5926322,
+      "lng": -122.318534,
+      "address": "Dr. Jose Rizal Park, 1007, Yesler Terrace, Seattle, King County, Washington, 98144, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view"
+      ]
+    },
+    {
+      "name": "Hamilton Viewpoint Park",
+      "note": "West Seattle, looking straight down the throat of Elliott Bay at downtown.",
+      "lat": 47.5915178,
+      "lng": -122.3837938,
+      "address": "Hamilton Viewpoint Park, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view",
+        "water"
+      ]
+    },
+    {
+      "name": "Volunteer Park Water Tower",
+      "note": "106 steps up a brick tower for a free 360 of the city. Nobody tells visitors about it.",
+      "lat": 47.6290221,
+      "lng": -122.314573,
+      "address": "Volunteer Park Water Tower, Volunteer Park Road, Madison Valley, Capitol Hill, Seattle, King County, Washington, 98102, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view"
+      ]
+    },
+    {
+      "name": "Alki Beach Park",
+      "note": "The skyline from across the water, with sand under you. Sunset is the move.",
+      "lat": 47.5866855,
+      "lng": -122.397641,
+      "address": "Alki Beach Park, West Seattle, Seattle, King County, Washington, United States",
+      "source": "nominatim",
+      "kinds": [
+        "view",
+        "water"
+      ]
+    }
+  ]
+}
