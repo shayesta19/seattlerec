@@ -47,6 +47,19 @@ function constellation(places: { lat: number; lng: number }[]) {
 }
 
 const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
+
+// Flat index of every place in every list, shipped inline so search is instant
+// and works offline. Keys are one letter because this is repeated once per
+// place and nothing else reads it: n(ame), l(ist), s(lug), i(ndex), k(inds).
+const searchIndex = lists.flatMap((l) =>
+  l.data.places.map((p, i) => ({
+    n: p.name,
+    l: l.data.name,
+    s: l.data.slug,
+    i,
+    k: (p.kinds ?? []).join(' '),
+  }))
+);
 ---
 
 <Base
@@ -64,10 +77,31 @@ const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
     </div>
   </header>
 
-  <main class="board-wrap">
+  <div class="wrap-wide">
+    <form class="search" role="search" onsubmit="return false">
+      <label class="sr-only" for="q">Search every place</label>
+      <input
+        type="search"
+        id="q"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder={`Search ${totalPlaces} places — ramen, park, Ballard…`}
+      />
+      <p class="search-hint" id="searchHint" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <div class="wrap-wide">
+    <section class="results" id="results" hidden>
+      <ol class="hits" id="hits"></ol>
+      <p class="no-hits" id="noHits" hidden>Nothing matches. Try a shorter word.</p>
+    </section>
+  </div>
+
+  <main class="board-wrap" id="board">
     <div class="wrap-wide">
       {groups.map((g) => (
-        <section class="board-group">
+        <section class:list={['board-group', { compact: g.key === 'personal' && g.lists.length > 8 }]}>
           <div class="section-head">
             <h2>{g.title}</h2>
             <p class="kicker">{g.sub}</p>
@@ -78,7 +112,7 @@ const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
               const preview = l.data.places.slice(0, 3).map((p) => p.name);
               const more = l.data.places.length - preview.length;
               return (
-                <a class="tile" href={`/lists/${l.data.slug}/`}>
+                <a class="tile" href={`/lists/${l.data.slug}/`} data-name={l.data.name.toLowerCase()}>
                   <svg class="tile-map" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="none">
                     {pts.map((pt) => <circle cx={pt.x} cy={pt.y} r="2.6" />)}
                   </svg>
@@ -112,4 +146,99 @@ const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
       </p>
     </div>
   </footer>
+
+  <script type="application/json" id="index" set:html={JSON.stringify(searchIndex)}></script>
+
+  <script>
+    const input = document.getElementById('q');
+    const board = document.getElementById('board');
+    const results = document.getElementById('results');
+    const hits = document.getElementById('hits');
+    const noHits = document.getElementById('noHits');
+    const hint = document.getElementById('searchHint');
+    const raw = document.getElementById('index')?.textContent;
+
+    if (input && raw) {
+      const index = JSON.parse(raw);
+      const tiles = Array.from(document.querySelectorAll('.tile'));
+      const MAX = 60;
+
+      const norm = (s) =>
+        s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+      // Precompute once. 500+ places is nothing to filter, but normalising on
+      // every keystroke is wasted work either way.
+      const haystack = index.map((r) => norm(r.n + ' ' + r.l + ' ' + r.k));
+
+      const esc = (s) =>
+        s.replace(/[&<>"']/g, (c) =>
+          ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
+        );
+
+      // Wrap the matched run so the eye lands on why a row came back.
+      function mark(text, needle) {
+        const at = norm(text).indexOf(needle);
+        if (at < 0) return esc(text);
+        return (
+          esc(text.slice(0, at)) +
+          '<mark>' + esc(text.slice(at, at + needle.length)) + '</mark>' +
+          esc(text.slice(at + needle.length))
+        );
+      }
+
+      function run() {
+        const q = norm(input.value.trim());
+
+        if (!q) {
+          board.hidden = false;
+          results.hidden = true;
+          hint.textContent = '';
+          tiles.forEach((t) => (t.hidden = false));
+          return;
+        }
+
+        // Lists whose own name matches stay visible as tiles above the places.
+        let listMatches = 0;
+        tiles.forEach((t) => {
+          const hit = norm(t.dataset.name || '').includes(q);
+          t.hidden = !hit;
+          if (hit) listMatches++;
+        });
+
+        const matched = [];
+        for (let i = 0; i < haystack.length && matched.length < MAX; i++) {
+          if (haystack[i].includes(q)) matched.push(index[i]);
+        }
+        const totalMatched = haystack.filter((h) => h.includes(q)).length;
+
+        board.hidden = listMatches === 0;
+        results.hidden = false;
+        noHits.hidden = totalMatched > 0 || listMatches > 0;
+
+        hits.innerHTML = matched
+          .map(
+            (r) =>
+              '<li class="hit"><a href="/lists/' + encodeURIComponent(r.s) + '/#place-' + r.i + '">' +
+              '<span class="hit-name">' + mark(r.n, q) + '</span>' +
+              '<span class="hit-list">' + mark(r.l, q) + '</span>' +
+              '</a></li>'
+          )
+          .join('');
+
+        const shown = Math.min(totalMatched, MAX);
+        hint.textContent =
+          totalMatched === 0
+            ? (listMatches ? listMatches + ' list' + (listMatches === 1 ? '' : 's') : '')
+            : shown + ' of ' + totalMatched + ' place' + (totalMatched === 1 ? '' : 's') +
+              (listMatches ? ' · ' + listMatches + ' list' + (listMatches === 1 ? '' : 's') : '');
+      }
+
+      input.addEventListener('input', run);
+      input.addEventListener('search', run);
+
+      // Deep link: /lists/?q=ramen
+      const preset = new URLSearchParams(location.search).get('q');
+      if (preset) { input.value = preset; run(); }
+    }
+  </script>
 </Base>

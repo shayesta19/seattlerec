@@ -581,3 +581,53 @@ a:hover { color: var(--spruce); }
 .board-group .section-head { margin-bottom: 22px; }
 .board-group .section-head h2 { margin-bottom: 4px; }
 .board-group .section-head .kicker { margin: 0; }
+
+/* ====================== search across every list ====================== */
+
+.search { margin: 8px 0 28px; }
+.search input {
+  width: 100%; padding: 15px 20px;
+  font: inherit; font-size: 17px; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  -webkit-appearance: none; appearance: none;
+}
+.search input::placeholder { color: var(--ink-faint); }
+.search input:focus {
+  outline: none; border-color: var(--spruce);
+  box-shadow: 0 0 0 3px rgba(28, 107, 77, .16);
+}
+.search-hint {
+  margin: 10px 2px 0; min-height: 1.2em;
+  font-size: 12px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+.results { padding-bottom: 24px; }
+.hits { list-style: none; margin: 0; padding: 0; }
+.hit + .hit { border-top: 1px solid var(--line-soft); }
+.hit a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  padding: 13px 4px; text-decoration: none;
+}
+.hit a:hover { color: var(--spruce); }
+.hit-name { font-family: var(--serif); font-size: 19px; line-height: 1.3; }
+.hit-list {
+  flex: none; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint);
+}
+.hits mark { background: rgba(28, 107, 77, .22); color: inherit; border-radius: 3px; padding: 0 2px; }
+.no-hits { color: var(--ink-faint); font-size: 15px; padding: 8px 4px 0; }
+
+/* Past about eight lists the tall tiles become a wall, so the personal group
+   drops to a dense row that still shows the pin constellation. */
+.board-group.compact .board { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.board-group.compact .tile { min-height: 0; padding: 15px 16px; }
+.board-group.compact .tile-emoji { font-size: 19px; margin-bottom: 7px; }
+.board-group.compact .tile h2 { font-size: 19px; margin-bottom: 0; }
+.board-group.compact .tile-blurb,
+.board-group.compact .tile-preview,
+.board-group.compact .tile-foot .go { display: none; }
+.board-group.compact .tile-foot {
+  margin-top: 10px; padding-top: 9px; border-top: 0;
+}
+.board-group.compact .tile-map { opacity: .13; }

@@ -217,3 +217,44 @@ kind of claim.
 - If AI Q&A does get built, it should sit *on top of* this data, not replace
   the picker. The picker answers in one click; a chat box asks the user to
   compose a sentence first.
+
+## Built for 36 lists / 500+ places (30 Aug 2026)
+
+Shaye has **36 lists and 500+ saved places** in Google Maps. None of them are
+in the export supplied on 29 Aug — that export had `Saved Places.json`, which
+is the flat pile of loose bookmarks (30 of them), not the named lists.
+
+**The named lists need a second Takeout run with the `Saved` product ticked.**
+See the "What the export actually contained" section above.
+
+### What was tested
+
+Before the real data arrives, the UI was run against a synthetic stand-in of
+36 lists / 672 places. Two things broke:
+
+1. **The board was 6.8 screens of scrolling.** 43 tall tiles in one grid.
+2. **No way to find anything.** No search, so a place buried in list 27 was
+   effectively lost.
+
+### What was added
+
+- **Search across every place in every list**, at `/lists`. Build-time index
+  inlined as JSON; client-side filter, no dependencies, no network. Measured at
+  **5.2 ms over 672 places**, and the index was 51.7 KB at that size (so roughly
+  40 KB at Shaye's real 500). Matches place names, list names and `kinds`,
+  highlights the matched run, and links straight to the anchored place on its
+  list page. Deep-linkable as `/lists/?q=ramen`.
+- **Compact board group.** Past eight lists the personal group drops to a dense
+  card grid — emoji, name, count, constellation, nothing else. Page height went
+  from 5253 px to 3020 px at 43 lists, 6.8 screens to 3.6.
+
+### Still open at scale
+- The picker on the home page points at the five curated lists. Once 36 real
+  lists land, decide whether it should surface those instead — their names
+  ("Hikes", "Happy hour") are already intent-shaped.
+- `kinds` is only populated on curated CSVs. Takeout CSVs have no such column,
+  so 500 imported places will arrive untagged. Either tag them by hand in a
+  rules file, or let list membership stand in for a tag.
+- Geocoding 500 places: most Takeout URLs carry coordinates inline and cost
+  nothing. Any that fall through to Nominatim run at 1.1 s each, so a worst
+  case is ~9 minutes. The cache makes re-runs free.
