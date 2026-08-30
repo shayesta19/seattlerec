@@ -135,3 +135,33 @@ meal type, price band — renders as the tag row under each place.
   list and place schemas, unused.
 - Decide whether the board is the front door or stays behind the guide.
 - Filter or search across lists once there are more than ~8.
+
+## Landing hero (30 Aug 2026)
+
+Full-bleed image hero: the view west from Seattle at golden hour — Puget Sound,
+a Washington State ferry, Bainbridge as a dark treeline, the Olympics behind.
+Text sits on the image over a two-axis scrim (bottom-up and left-in), so the
+type colours in `.hero-photo` are pinned light rather than themed. A photo is
+dark at the bottom in either mode.
+
+**To use a real photo**: drop it at `public/hero.jpg` (`.webp`, `.jpeg` and
+`.png` also work — first match wins, webp first). `src/pages/index.astro`
+checks for the file at build time and swaps automatically. No code change.
+Wants to be at least 2000px wide, landscape, with the horizon roughly a third
+up from the bottom, and quiet space on the right where the ferry currently sits.
+
+Until then `src/components/HeroScene.astro` draws the scene: layered ridgelines
+with atmospheric haze, a blurred sun-glitter column, water bands that widen as
+they approach, and the ferry near the horizon on the right, clear of the
+headline column. Every colour is a `--sc-*` custom property, so the scene goes
+from golden hour to dusk with the page theme.
+
+`preserveAspectRatio="xMaxYMid slice"` pins the right edge. On desktop the
+width already matches so it changes nothing; on a phone the horizontal crop
+keeps the sun and the ferry instead of throwing them away.
+
+**Note on reviewing this in Chrome**: Shaye's Chrome has *Auto Dark Mode for
+Web Contents* enabled (`chrome://flags/#enable-force-dark`), which force-darkens
+the scene at paint time — the warm colours will not look warm in screenshots.
+`prefers-color-scheme` reports light and `--sc-glitter` resolves to `#ffcf94`,
+so the palette is fine; the browser is lying about it.

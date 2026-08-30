@@ -389,3 +389,108 @@ a:hover { color: var(--spruce); }
   border-color: rgba(28, 107, 77, .32); background: rgba(28, 107, 77, .1);
   color: var(--spruce); font-weight: 600;
 }
+
+/* ====================== landing hero: the photo ======================
+   Full-bleed image with the text sitting on it, so the scrim -- not the page
+   palette -- decides legibility. That means the type colours here are pinned
+   rather than themed: a photo is dark at the bottom in either mode. */
+
+.hero-photo {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(88vh, 800px);
+  padding: 0 0 clamp(48px, 8vh, 88px);
+  background: var(--sc-sky-1);
+  border-bottom: 0;
+  overflow: hidden;
+}
+
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-media img,
+.hero-media .scene {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-scrim {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to top,
+      rgba(6, 14, 18, .93) 0%,
+      rgba(6, 14, 18, .74) 26%,
+      rgba(6, 14, 18, .30) 54%,
+      rgba(6, 14, 18, .07) 78%,
+      transparent 100%),
+    linear-gradient(to right,
+      rgba(6, 14, 18, .52) 0%,
+      rgba(6, 14, 18, .14) 46%,
+      transparent 72%);
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-photo .eyebrow { color: rgba(244, 247, 246, .70); }
+.hero-photo h1 {
+  color: #f4f7f6;
+  text-shadow: 0 2px 30px rgba(6, 14, 18, .45);
+}
+.hero-photo h1 em { color: #82ddb6; }
+.hero-photo .lede {
+  color: rgba(244, 247, 246, .86);
+  text-shadow: 0 1px 18px rgba(6, 14, 18, .5);
+}
+.hero-photo .hero-cta a {
+  background: #1f8a63;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(6, 14, 18, .35);
+}
+.hero-photo .hero-cta a:hover { background: #23a074; color: #ffffff; opacity: 1; }
+
+/* ---- the drawn scene's palette: golden hour, and dusk in dark mode ---- */
+
+:root {
+  --sc-sky-1: #143a4f;
+  --sc-sky-2: #3f7186;
+  --sc-sky-3: #b98263;
+  --sc-sky-4: #eeae76;
+  --sc-sky-5: #f7cd93;
+  --sc-sun: #ffdca8;
+  --sc-mtn-far: #6f8196;
+  --sc-mtn-near: #415265;
+  --sc-island: #223140;
+  --sc-water-1: #c08a5f;
+  --sc-water-2: #2f4d5f;
+  --sc-water-3: #182d3d;
+  --sc-glitter: #ffcf94;
+  --sc-band: #ffffff;
+  --sc-ferry-hull: #14212c;
+  --sc-ferry-deck: #eae6de;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sc-sky-1: #050b13;
+    --sc-sky-2: #0f1e2c;
+    --sc-sky-3: #26343f;
+    --sc-sky-4: #4d3f44;
+    --sc-sky-5: #704c44;
+    --sc-sun: #b4795c;
+    --sc-mtn-far: #27353f;
+    --sc-mtn-near: #17222c;
+    --sc-island: #0c141b;
+    --sc-water-1: #4a3733;
+    --sc-water-2: #12212c;
+    --sc-water-3: #070f17;
+    --sc-glitter: #8d6350;
+    --sc-band: #cfe3ea;
+    --sc-ferry-hull: #060d13;
+    --sc-ferry-deck: #c9d2d1;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-photo { min-height: 78vh; }
+}

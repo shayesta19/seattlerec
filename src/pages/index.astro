@@ -1,6 +1,15 @@
 ---
+import { existsSync } from 'node:fs';
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import HeroScene from '../components/HeroScene.astro';
+
+// Drop a photo at public/hero.jpg (or .webp / .png) and it takes over the
+// landing page. Until then the drawn scene stands in, so there is never a grey
+// box waiting on an asset.
+const HERO_CANDIDATES = ['hero.webp', 'hero.jpg', 'hero.jpeg', 'hero.png'];
+const heroFile = HERO_CANDIDATES.find((f) => existsSync(new URL('../../public/' + f, import.meta.url)));
+const heroPhoto = heroFile ? '/' + heroFile : null;
 
 const sections = (await getCollection('sections')).sort(
   (a, b) => a.data.order - b.data.order
@@ -23,8 +32,15 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
   title="A local’s guide to Seattle — seattlerec.com"
   description="An intro to Seattle as a city: how to orient yourself, how to get around, the Freeze, the rain myth, and the quirks nobody tells a first-time visitor."
 >
-  <header class="hero">
-    <div class="wrap">
+  <header class="hero hero-photo">
+    <div class="hero-media">
+      {heroPhoto
+        ? <img src={heroPhoto} alt="The Olympic Mountains across Puget Sound, with a Washington State ferry crossing" fetchpriority="high" />
+        : <HeroScene />}
+    </div>
+    <div class="hero-scrim"></div>
+
+    <div class="wrap hero-content">
       <p class="eyebrow">An intro to the city</p>
       <h1>A local’s guide to <em>Seattle</em></h1>
       <p class="lede">

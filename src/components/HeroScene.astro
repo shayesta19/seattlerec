@@ -1,0 +1,122 @@
+---
+/**
+ * The view west from Seattle at golden hour: Puget Sound, a Washington State
+ * ferry mid-crossing, Bainbridge as a dark treeline, and the Olympics behind
+ * it. Drawn rather than photographed so the landing page has something real
+ * until a licensed photo is dropped in at `public/hero.jpg` -- see
+ * `src/pages/index.astro`, which swaps to the photo automatically.
+ *
+ * Every colour is a CSS custom property, so the scene shifts from golden hour
+ * to dusk with the page theme instead of being repainted.
+ */
+---
+
+<svg
+  class="scene"
+  viewBox="0 0 1600 900"
+  preserveAspectRatio="xMaxYMid slice"
+  role="img"
+  aria-label="The Olympic Mountains across Puget Sound at sunset, with a Washington State ferry crossing the water"
+>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="var(--sc-sky-1)" />
+      <stop offset="42%"  stop-color="var(--sc-sky-2)" />
+      <stop offset="74%"  stop-color="var(--sc-sky-3)" />
+      <stop offset="92%"  stop-color="var(--sc-sky-4)" />
+      <stop offset="100%" stop-color="var(--sc-sky-5)" />
+    </linearGradient>
+
+    <radialGradient id="glow" cx="0.806" cy="0.615" r="0.34">
+      <stop offset="0%"   stop-color="var(--sc-sun)" stop-opacity="0.95" />
+      <stop offset="45%"  stop-color="var(--sc-sun)" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="var(--sc-sun)" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="var(--sc-water-1)" />
+      <stop offset="30%"  stop-color="var(--sc-water-2)" />
+      <stop offset="100%" stop-color="var(--sc-water-3)" />
+    </linearGradient>
+
+    <!-- The sun's reflection widens as it comes toward the viewer. -->
+    <linearGradient id="glitter" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="var(--sc-glitter)" stop-opacity="0.62" />
+      <stop offset="45%"  stop-color="var(--sc-glitter)" stop-opacity="0.20" />
+      <stop offset="100%" stop-color="var(--sc-glitter)" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Sun glitter has no edges, so the column gets blurred back into the
+         water rather than sitting on it as a wedge. -->
+    <filter id="soft" x="-30%" y="-15%" width="160%" height="130%">
+      <feGaussianBlur stdDeviation="30" />
+    </filter>
+
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="var(--sc-sky-4)" stop-opacity="0" />
+      <stop offset="100%" stop-color="var(--sc-sky-4)" stop-opacity="0.55" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)" />
+  <rect width="1600" height="900" fill="url(#glow)" />
+  <circle cx="1290" cy="536" r="26" fill="var(--sc-sun)" opacity="0.9" />
+
+  <!-- Far Olympics: hazier and lighter, the way distance washes a range out. -->
+  <path
+    fill="var(--sc-mtn-far)"
+    d="M0,527 L92,494 143,509 212,468 268,493 332,450 397,486 458,461 523,501 592,466
+       643,489 707,453 763,479 822,465 893,499 953,470 1013,493 1082,456 1143,487
+       1203,469 1268,501 1333,477 1402,497 1472,473 1543,501 1600,485
+       L1600,570 L0,570 Z"
+  />
+  <!-- Near ridge: same range, one fold closer, so it reads darker. -->
+  <path
+    fill="var(--sc-mtn-near)"
+    d="M0,549 L72,527 132,541 197,510 252,535 317,503 372,529 432,515 497,541
+       562,519 627,539 692,512 748,533 812,521 877,546 937,525 997,543 1062,517
+       1127,539 1192,527 1257,547 1322,529 1387,546 1452,526 1517,545 1600,531
+       L1600,572 L0,572 Z"
+  />
+  <rect y="470" width="1600" height="102" fill="url(#haze)" />
+
+  <!-- Bainbridge: a low dark treeline sitting in front of the mountains. -->
+  <path
+    fill="var(--sc-island)"
+    d="M0,559 Q210,553 402,557 T798,554 T1204,558 T1600,553 L1600,574 L0,574 Z"
+  />
+
+  <rect y="572" width="1600" height="328" fill="url(#water)" />
+  <path
+    d="M1258,574 L1322,574 L1452,900 L1128,900 Z"
+    fill="url(#glitter)"
+    filter="url(#soft)"
+  />
+
+  <!-- Washington State ferry, a mile or so out. Both ends taper the same way
+       because they run bow-first in either direction and never turn around.
+       Dark car deck, white superstructure, pilot house set off centre. -->
+  <g transform="translate(1188 559) scale(0.8)">
+    <path d="M2,14 L10,9 L186,9 L194,14 L188,25 L8,25 Z" fill="var(--sc-ferry-hull)" />
+    <path d="M16,1 L180,1 L180,9 L16,9 Z" fill="var(--sc-ferry-deck)" />
+    <path d="M84,-7 L112,-7 L112,1 L84,1 Z" fill="var(--sc-ferry-deck)" />
+    <rect x="96" y="-13" width="4" height="6" fill="var(--sc-ferry-hull)" />
+  </g>
+  <rect
+    x="1196" y="580" width="150" height="7"
+    fill="var(--sc-ferry-hull)" opacity="0.22"
+  />
+
+  <!-- Water bands: wider and further apart as they approach, which is what
+       sells the horizontal distance more than any amount of wave detail. -->
+  <g fill="var(--sc-band)">
+    <rect x="0"   y="586" width="1600" height="1.5" opacity="0.30" />
+    <rect x="180" y="604" width="1240" height="2"   opacity="0.22" />
+    <rect x="0"   y="628" width="900"  height="2.5" opacity="0.18" />
+    <rect x="820" y="652" width="780"  height="3"   opacity="0.20" />
+    <rect x="120" y="688" width="1100" height="3.5" opacity="0.15" />
+    <rect x="700" y="736" width="900"  height="4"   opacity="0.16" />
+    <rect x="0"   y="792" width="820"  height="5"   opacity="0.13" />
+    <rect x="480" y="856" width="1120" height="6"   opacity="0.12" />
+  </g>
+</svg>
