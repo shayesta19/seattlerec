@@ -258,3 +258,68 @@ Before the real data arrives, the UI was run against a synthetic stand-in of
 - Geocoding 500 places: most Takeout URLs carry coordinates inline and cost
   nothing. Any that fall through to Nominatim run at 1.1 s each, so a worst
   case is ~9 minutes. The cache makes re-runs free.
+
+## The real list names, and what they tell us (30 Aug 2026)
+
+Shaye's 32 named lists:
+
+> pizza · activities and attractions · unique food · restaurants · brunch ·
+> waterfront restaurants · cocktails/bars · hikes and trails · restaurants open
+> late night · boba · asian restaurants · indian restaurants · dessert · cafes ·
+> cakes · cabins · bakery · matcha · halal food · favorites · fried chicken ·
+> sandwich shops · buffets · ice cream · parks · clubs · bellevue · places to
+> buy gifts · salons · food trucks · bagels · starred places
+
+### The finding that shaped the build
+
+**23 of 32 (72%) are food and drink.** Four are outdoors. Five are neither.
+
+And four things have no list at all: **water, urban running loops, viewpoints,
+and third places.** Those are exactly the four curated lists — and exactly what
+Shaye described missing on arriving from Boston.
+
+That is not an oversight, it is how saving works. You bookmark a restaurant
+because you read about it. You do not bookmark "a river to sit by after work";
+you just feel its absence. The curated layer is not filling a gap in the data,
+it is filling the gap that made the first months hard, which is the whole
+premise of the site.
+
+### The lists overlap on purpose
+
+They are cut on at least four different axes at once:
+
+| Axis | Examples |
+|---|---|
+| Cuisine | asian, indian, halal |
+| Dish | pizza, boba, matcha, bagels, fried chicken, ice cream |
+| Occasion | brunch, late night, clubs, cocktails |
+| Geography | bellevue, waterfront restaurants |
+
+So one restaurant can legitimately sit in three lists. Two consequences, both
+handled:
+
+- **The board groups by axis**, not alphabetically — see `data/list-groups.json`.
+  Ordered rules, first match wins, `*` for substring. Anything unmatched falls
+  into the last group, so a new list always lands somewhere. Verified against
+  all 32 real names: Eat 14, Coffee/sweets/drink 9, Outside 4, Errands 3,
+  catch-all 4, plus the 5 curated.
+- **Search dedupes** by name + position rounded to 3 decimals. Without it,
+  searching "pho" returns the same restaurant three times. The result shows the
+  primary list and a `+2` for the others, and prefers a curated list as the
+  destination when the place is in one.
+
+### Decisions this settles
+- The picker keeps pointing at the curated five. Shaye's lists are mostly
+  cuisine and dish categories, which answer "what do I want to eat", not "what
+  do I do this evening". Both are useful; they are different questions.
+- `kinds` stays curated-only. List membership is the tag for imported places —
+  "boba" is a better tag than anything a classifier would infer.
+
+### Still to do when the export lands
+- `favorites` and `starred places` are Google's defaults and probably overlap
+  everything else heavily. Watch what dedup does to them; they may be worth
+  hiding (`"hidden": true`) rather than shown as lists.
+- `bellevue` is a geography list in a Seattle guide. Decide whether the site
+  covers the Eastside or points at it.
+- `salons` and `places to buy gifts` may not belong on a public city guide at
+  all. Currently grouped into "Errands and elsewhere", low on the page.

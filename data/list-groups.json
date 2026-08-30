@@ -1,0 +1,56 @@
+{
+  "_comment": "How the board groups lists. Rules run in order and the first match wins, so put the specific ones first. `match` entries are matched against the slugified list name: an entry with no wildcard must match the whole slug, and one containing * is a substring rule. Anything unmatched falls into the last group, so a new list always lands somewhere.",
+  "groups": [
+    {
+      "key": "start",
+      "title": "Start here",
+      "sub": "Answers to the question you actually have.",
+      "curatedOnly": true
+    },
+    {
+      "key": "eat",
+      "title": "Eat",
+      "sub": "The bulk of it. Cuisine, dish, occasion and neighbourhood, all mixed together the way you saved them.",
+      "match": [
+        "*restaurant*", "pizza", "unique-food", "brunch", "halal-food",
+        "fried-chicken", "sandwich-shops", "buffets", "food-trucks", "bagels",
+        "*asian*", "*indian*", "*mexican*", "*thai*", "*korean*", "*ramen*",
+        "*sushi*", "*bbq*", "*burger*", "*noodle*", "*taco*"
+      ]
+    },
+    {
+      "key": "drink",
+      "title": "Coffee, sweets and a drink",
+      "sub": "Everything between meals, plus the places you go after one.",
+      "match": [
+        "cafes", "*coffee*", "matcha", "boba", "dessert", "cakes", "bakery",
+        "*bakeries*", "ice-cream", "*cocktail*", "*bar*", "clubs", "*brewer*",
+        "*wine*", "*tea*"
+      ]
+    },
+    {
+      "key": "outside",
+      "title": "Outside",
+      "sub": "Where to go when the answer is not a table.",
+      "match": [
+        "activities-and-attractions", "hikes-and-trails", "parks", "cabins",
+        "*hike*", "*trail*", "*camp*", "*beach*", "*island*", "*day-trip*",
+        "*view*", "*water*"
+      ]
+    },
+    {
+      "key": "errands",
+      "title": "Errands and elsewhere",
+      "sub": "Useful, unglamorous, and worth keeping out of the way of the rest.",
+      "match": [
+        "salons", "places-to-buy-gifts", "*gift*", "*salon*", "*shop*",
+        "bellevue", "*grocer*"
+      ]
+    },
+    {
+      "key": "rest",
+      "title": "From my own maps",
+      "sub": "Saved and reviewed over a few years of living here. Honest, not comprehensive."
+    }
+  ]
+}

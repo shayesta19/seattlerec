@@ -6,23 +6,34 @@ const lists = (await getCollection('lists'))
   .filter((l) => !l.data.hidden)
   .sort((a, b) => a.data.order - b.data.order || a.data.name.localeCompare(b.data.name));
 
-// Two different promises, so they do not sit in one undifferentiated grid.
-// The curated lists answer a question; the personal ones are a record of where
-// somebody actually went, which is a different and more fallible thing.
-const groups = [
-  {
-    key: 'curated',
-    title: 'Start here',
-    sub: 'Answers to the question you actually have.',
-    lists: lists.filter((l) => l.data.curated),
-  },
-  {
-    key: 'personal',
-    title: 'From my own maps',
-    sub: 'Saved and reviewed over a few years of living here. Honest, not comprehensive.',
-    lists: lists.filter((l) => !l.data.curated),
-  },
-].filter((g) => g.lists.length > 0);
+// Thirty-odd lists in one grid is a wall, and they do not all make the same
+// promise: the curated ones answer a question, the personal ones record where
+// somebody went. Grouping is data, not code -- see data/list-groups.json --
+// because the shape of the collection changes every time a list is added.
+const groupConfig = (await import('../../../data/list-groups.json')).default;
+
+// "pizza" matches the whole slug; "*restaurant*" matches any part of it.
+const matches = (slug: string, rule: string) =>
+  rule.includes('*')
+    ? slug.includes(rule.replace(/\*/g, ''))
+    : slug === rule;
+
+const bucketOf = (list: { curated: boolean; slug: string; name: string }) => {
+  const slug = list.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  for (const g of groupConfig.groups) {
+    if (g.curatedOnly) {
+      if (list.curated) return g.key;
+      continue;
+    }
+    if (g.match?.some((rule) => matches(slug, rule))) return g.key;
+  }
+  // The last group has no rules on purpose: it catches everything left.
+  return groupConfig.groups[groupConfig.groups.length - 1].key;
+};
+
+const groups = groupConfig.groups
+  .map((g) => ({ ...g, lists: lists.filter((l) => bucketOf(l.data) === g.key) }))
+  .filter((g) => g.lists.length > 0);
 
 // Each tile carries a little constellation of its own pins: the list's places
 // normalised into the tile's box, so a tightly clustered list reads as tight
@@ -49,17 +60,43 @@ function constellation(places: { lat: number; lng: number }[]) {
 const totalPlaces = lists.reduce((n, l) => n + l.data.places.length, 0);
 
 // Flat index of every place in every list, shipped inline so search is instant
-// and works offline. Keys are one letter because this is repeated once per
-// place and nothing else reads it: n(ame), l(ist), s(lug), i(ndex), k(inds).
-const searchIndex = lists.flatMap((l) =>
-  l.data.places.map((p, i) => ({
-    n: p.name,
-    l: l.data.name,
-    s: l.data.slug,
-    i,
-    k: (p.kinds ?? []).join(' '),
-  }))
-);
+// and works offline. Keys are one letter because this repeats once per place
+// and nothing else reads it: n(ame), l(ist), s(lug), i(ndex), k(inds), x(tra
+// lists it also appears in).
+//
+// The lists overlap heavily by design -- a place can sit in "restaurants",
+// "asian restaurants" and "waterfront restaurants" at once -- so the index is
+// deduped by name and rounded position. Without this, searching "pho" returns
+// the same restaurant three times and the results read as noise.
+const seen = new Map<string, { n: string; l: string; s: string; i: number; k: string; x: number }>();
+
+for (const l of lists) {
+  l.data.places.forEach((p, i) => {
+    const key =
+      p.name.toLowerCase().trim() + '@' + p.lat.toFixed(3) + ',' + p.lng.toFixed(3);
+    const hit = seen.get(key);
+    if (hit) {
+      hit.x++;
+      // A curated list is the better place to send someone than a raw saved one.
+      if (l.data.curated && hit.x > 0) {
+        hit.l = l.data.name;
+        hit.s = l.data.slug;
+        hit.i = i;
+      }
+      return;
+    }
+    seen.set(key, {
+      n: p.name,
+      l: l.data.name,
+      s: l.data.slug,
+      i,
+      k: (p.kinds ?? []).join(' '),
+      x: 0,
+    });
+  });
+}
+
+const searchIndex = [...seen.values()];
 ---
 
 <Base
@@ -101,7 +138,7 @@ const searchIndex = lists.flatMap((l) =>
   <main class="board-wrap" id="board">
     <div class="wrap-wide">
       {groups.map((g) => (
-        <section class:list={['board-group', { compact: g.key === 'personal' && g.lists.length > 8 }]}>
+        <section class:list={['board-group', { compact: g.key !== 'start' && g.lists.length > 6 }]}>
           <div class="section-head">
             <h2>{g.title}</h2>
             <p class="kicker">{g.sub}</p>
@@ -125,7 +162,7 @@ const searchIndex = lists.flatMap((l) =>
                     </p>
                   </div>
                   <div class="tile-foot">
-                    <span class="count">{l.data.places.length} places</span>
+                    <span class="count">{l.data.places.length} {l.data.places.length === 1 ? 'place' : 'places'}</span>
                     <span class="go" aria-hidden="true">Open map →</span>
                   </div>
                 </a>
@@ -220,7 +257,9 @@ const searchIndex = lists.flatMap((l) =>
             (r) =>
               '<li class="hit"><a href="/lists/' + encodeURIComponent(r.s) + '/#place-' + r.i + '">' +
               '<span class="hit-name">' + mark(r.n, q) + '</span>' +
-              '<span class="hit-list">' + mark(r.l, q) + '</span>' +
+              '<span class="hit-list">' + mark(r.l, q) +
+              (r.x ? '<span class="hit-more"> +' + r.x + '</span>' : '') +
+              '</span>' +
               '</a></li>'
           )
           .join('');

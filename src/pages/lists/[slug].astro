@@ -48,7 +48,7 @@ const shortAddress = (a?: string) =>
         </h1>
         {list.blurb && <p class="lede">{list.blurb}</p>}
         <p class="meta">
-          {places.length} places
+          {places.length} {places.length === 1 ? 'place' : 'places'}
           {list.curated
             ? <> · <span class="badge">hand-picked</span></>
             : list.updated && <> · saved list, last imported {list.updated}</>}

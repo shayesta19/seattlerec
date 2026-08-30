@@ -631,3 +631,4 @@ a:hover { color: var(--spruce); }
   margin-top: 10px; padding-top: 9px; border-top: 0;
 }
 .board-group.compact .tile-map { opacity: .13; }
+.hit-more { color: var(--spruce); margin-left: 4px; }

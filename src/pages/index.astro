@@ -81,7 +81,7 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
             <span class="pick-emoji" aria-hidden="true">{l.data.emoji}</span>
             <span class="pick-name">{l.data.name}</span>
             {l.data.blurb && <span class="pick-why">{l.data.blurb}</span>}
-            <span class="pick-count">{l.data.places.length} places</span>
+            <span class="pick-count">{l.data.places.length} {l.data.places.length === 1 ? 'place' : 'places'}</span>
           </a>
         ))}
       </div>
@@ -178,8 +178,8 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
     <div class="wrap">
       <p class="big">Next: <a href="/lists/">the actual recommendations</a>.</p>
       <p>
-        Saved lists — coffee, date night, outdoors, rainy days — each one on a
-        map with the reasons attached. The swipe deck comes after that.
+        Every list on a map, with the reasons attached — and a search across all
+        of them when you already know the word you are looking for.
       </p>
     </div>
   </footer>
