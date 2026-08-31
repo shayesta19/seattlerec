@@ -366,3 +366,51 @@ Nothing gets renamed silently.
 `Start here` (curated) · `Eat` · `Coffee, sweets and a drink` · `Outside` ·
 `Across the lake` · `From my own maps` (catch-all, holds the two renamed
 defaults plus been-there / want-to-go).
+
+## The landing photo
+
+A supplied image of the Olympics at sunset across Puget Sound, two Washington
+State ferries in the channel. It replaces `HeroScene.astro`, which stays in the
+tree as the fallback: delete `public/hero/` and the drawn scene comes back.
+
+### It does not ship as supplied
+2.7 MB, 2686 x 1568. As the LCP element on the front page that is the whole
+first impression spent on one file. `npm run hero` writes AVIF and WebP at
+1280/1920/2560 plus a JPEG fallback; the 1920 AVIF a laptop actually fetches is
+**87 KB**, a 31x reduction, and the sky holds together because AVIF does not
+band on long gradients the way JPEG does at any quality worth shipping.
+
+The manifest carries a 24px copy of the photo inlined as a data URI. The hero
+paints that as a background first, so the page opens on the picture's own
+colours instead of a flat block.
+
+### The contrast problem, and why the screenshot lied
+White type sits directly on the photo, so contrast is a property of the pixels.
+The eyebrow -- 12px, uppercase, high in the frame -- landed on lit snow at
+**2.48:1**. It needs 4.5:1.
+
+It looked fine on screen. It looked fine because this machine has Chrome's
+"Auto Dark Mode for Web Contents" on, which darkens every screenshot of a light
+page and flatters every contrast check made by eye. The page reported
+`prefers-color-scheme: false` and `bodyBg: rgb(247, 246, 242)` while the capture
+came back dark. Measuring, not looking, is the only way to settle this.
+
+Raising the type's opacity could not fix it: against that sky, even pure white
+tops out at 3.44:1.
+
+### Why an ellipse and not a darker scrim
+Deepening the linear scrim would have worked and would have cost the alpenglow,
+which is the reason to run this photograph at all. Instead there is a soft
+elliptical scrim over the text column only -- `radial-gradient(70% 45% at 34%
+40%, ...)`. Measured, it carries the eyebrow to 4.98:1 and the headline to
+5.53:1 while leaving the right-hand peaks and both ferries untouched. It is
+invisible as a shape; there is no band or edge.
+
+Checked at 1920x800 and at 414x699, where the crop is completely different.
+Both pass with margin.
+
+### Keeping it honest
+`tools/hero-contrast.mjs` re-runs that measurement and exits non-zero on a
+failure, so swapping in a brighter photo is a caught error rather than
+something nobody notices. Its gradients are transcribed from `global.css`, not
+imported -- if the scrim changes, that file has to change with it.

@@ -1,0 +1,16 @@
+{
+  "width": 2686,
+  "height": 1568,
+  "sources": [
+    {
+      "type": "image/avif",
+      "srcset": "/hero/hero-1280.avif 1280w, /hero/hero-1920.avif 1920w, /hero/hero-2560.avif 2560w"
+    },
+    {
+      "type": "image/webp",
+      "srcset": "/hero/hero-1280.webp 1280w, /hero/hero-1920.webp 1920w, /hero/hero-2560.webp 2560w"
+    }
+  ],
+  "fallback": "/hero/hero-1920.jpg",
+  "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAwCdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdAB6HSdCLx5WZP0wA/iLHc/sZf7CgnMWJMKNe8QTB63452xAvmhze7ltmMSVekK0hIGUU3e7TxwGiOCqRMx66QgvBs2mAEq3QAAA="
+}

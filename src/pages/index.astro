@@ -1,21 +1,25 @@
 ---
 import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import HeroScene from '../components/HeroScene.astro';
 
-// Drop a photo at public/hero.jpg (or .webp / .jpeg / .png) and it takes over
-// the landing page. Until then the drawn scene stands in, so there is never a
-// grey box waiting on an asset.
+// The landing photo, in every size and format `npm run hero` produced. If
+// public/hero/ is not there the drawn scene takes the slot instead, so there
+// is never a grey box on the page waiting for an asset.
 //
 // Resolved against the working directory, not import.meta.url: Astro rewrites
 // module URLs during the build, so the relative form silently never matches.
-const HERO_CANDIDATES = ['hero.webp', 'hero.jpg', 'hero.jpeg', 'hero.png'];
-const heroFile = HERO_CANDIDATES.find((f) =>
-  existsSync(path.join(process.cwd(), 'public', f))
-);
-const heroPhoto = heroFile ? '/' + heroFile : null;
+const HERO_MANIFEST = path.join(process.cwd(), 'public', 'hero', 'manifest.json');
+const hero = existsSync(HERO_MANIFEST)
+  ? JSON.parse(await readFile(HERO_MANIFEST, 'utf8'))
+  : null;
+
+const HERO_ALT =
+  'The Olympic Mountains lit gold at sunset across Puget Sound, with two ' +
+  'Washington State ferries passing in the channel below.';
 
 const sections = (await getCollection('sections')).sort(
   (a, b) => a.data.order - b.data.order
@@ -48,9 +52,23 @@ const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
   description="An intro to Seattle as a city: how to orient yourself, how to get around, the Freeze, the rain myth, and the quirks nobody tells a first-time visitor."
 >
   <header class="hero hero-photo">
-    <div class="hero-media">
-      {heroPhoto
-        ? <img src={heroPhoto} alt="The Olympic Mountains across Puget Sound, with a Washington State ferry crossing" fetchpriority="high" />
+    <div class="hero-media" style={hero ? `background-image:url(${hero.blur})` : undefined}>
+      {hero
+        ? (
+            <picture>
+              {hero.sources.map((s: { type: string; srcset: string }) => (
+                <source type={s.type} srcset={s.srcset} sizes="100vw" />
+              ))}
+              <img
+                src={hero.fallback}
+                width={hero.width}
+                height={hero.height}
+                alt={HERO_ALT}
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+          )
         : <HeroScene />}
     </div>
     <div class="hero-scrim"></div>

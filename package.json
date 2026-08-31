@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "hero": "node tools/hero.mjs",
     "check": "astro check",
     "import:lists": "node tools/import-lists.mjs && node tools/import-takeout.mjs",
     "import:lists:dry": "node tools/import-lists.mjs --dry-run && node tools/import-takeout.mjs --dry-run"

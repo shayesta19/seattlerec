@@ -407,17 +407,41 @@ a:hover { color: var(--spruce); }
   overflow: hidden;
 }
 
-.hero-media { position: absolute; inset: 0; z-index: 0; }
+/* The inline background is a 24px copy of the photo, so the hero opens on
+   its own colours instead of a flat block while the real file loads. */
+.hero-media {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover;
+  background-position: center;
+}
+/* `contents` so the <img> sizes against .hero-media rather than an
+   auto-height <picture> that would collapse it to nothing. */
+.hero-media picture { display: contents; }
 .hero-media img,
 .hero-media .scene {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
 }
+/* Wide-and-short viewports crop top and bottom. Losing water off the bottom,
+   under the darkest part of the scrim, costs less than losing the peaks. */
+.hero-media img { object-position: 50% 42%; }
 
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
+    /* The eyebrow sits high in the frame, where the two linear scrims below
+       have already thinned out to almost nothing, and on this photo what is
+       behind it there is lit snow -- measured at 2.5:1 against white, which
+       small text has no business being set on. Darkening the whole upper
+       frame would fix it and cost the alpenglow, which is the reason to run
+       this picture at all. So: a soft ellipse over the text column only. It
+       carries the eyebrow clear of 4.5:1 and leaves the right-hand peaks and both
+       ferries at full strength. */
+    radial-gradient(70% 45% at 34% 40%,
+      rgba(6, 14, 18, .32) 0%,
+      rgba(6, 14, 18, .18) 45%,
+      transparent 78%),
     linear-gradient(to top,
       rgba(6, 14, 18, .93) 0%,
       rgba(6, 14, 18, .74) 26%,
@@ -432,7 +456,10 @@ a:hover { color: var(--spruce); }
 
 .hero-content { position: relative; z-index: 2; }
 
-.hero-photo .eyebrow { color: rgba(244, 247, 246, .70); }
+.hero-photo .eyebrow {
+  color: rgba(244, 247, 246, .88);
+  text-shadow: 0 1px 12px rgba(6, 14, 18, .6);
+}
 .hero-photo h1 {
   color: #f4f7f6;
   text-shadow: 0 2px 30px rgba(6, 14, 18, .45);
