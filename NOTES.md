@@ -414,3 +414,45 @@ Both pass with margin.
 failure, so swapping in a brighter photo is a caught error rather than
 something nobody notices. Its gradients are transcribed from `global.css`, not
 imported -- if the scrim changes, that file has to change with it.
+
+## The favicon
+
+The Space Needle, white with a Galaxy Gold top house. That is the 1962
+World's Fair scheme -- Astronaut White on the legs, Galaxy Gold on the top
+house -- and gold is where the halo went back to for the 50th in 2012. A
+Needle that is orange all the way down is not one anybody has seen.
+
+### Drawing it took six passes, and five of them looked like a person
+A symmetrical form with a wide horizontal element partway up and two splayed
+supports below it reads as a human figure with its arms out. Every early
+attempt hit this. Two things fixed it:
+
+- **Vertical proportion.** The real observation deck sits at 86% of the
+  tower's height. Drawn at the halfway mark it is exactly where a head and
+  shoulders sit. Pushed up, with a long waist below, it stops being a person.
+- **The saucer is an ellipse, not a bar.** A flat plank with pointed ends is
+  a pair of arms. A disc with curvature and a concave underside flowing into
+  the shaft is a top house.
+
+Strict realism does not survive the format: the base spans only a fifth of
+the real tower's height, which at 16px is a vertical line with a speck on
+top. The proportions here are stylised. What had to stay true was their
+*order* -- saucer high, long waist, narrow feet.
+
+### One definition, five framings
+`tools/icons.mjs` holds the artwork and emits everything. The set needs three
+different croppings that have to agree: a rounded badge for browsers, square
+corners for iOS (which applies its own mask -- rounding it here rounds it
+twice), and the maskable icon inset into the 80% safe zone or Android crops
+the spire and the feet off. The tool checks nothing by itself, but the
+artwork existing once means the five files cannot drift apart.
+
+Measured on the badge: gold 7.0:1, white 14.1:1. The `.ico` is a directory of
+real PNGs at 16/32/48, verified by parsing it back out.
+
+### Chrome inverted it, again
+Displayed as an `<img>`, the SVG came back pale mint while the PNGs stayed
+dark green -- auto dark mode treats vector graphics as content and photos as
+photos. Reading the decoded pixels through a canvas gave `rgb(16,36,29)` for
+both, i.e. the file is fine. Tab favicons are drawn by browser UI rather than
+the page renderer, so this never reaches the tab strip.
